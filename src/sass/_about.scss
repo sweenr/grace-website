@@ -1,0 +1,14 @@
+@media screen and (max-width: 768px) {
+  .about-content {
+    .info-block {
+      display: flex;
+      flex-direction: column-reverse;
+      img {
+        width: 50vw;
+        height: 50vw;
+        align-self: center;
+        margin-bottom: 15px;
+      }
+    }
+  }
+}

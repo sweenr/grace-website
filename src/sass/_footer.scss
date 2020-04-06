@@ -1,0 +1,33 @@
+footer {
+  display: flex;
+  justify-content: space-between;
+  background-color: $font-color;
+  color: $body-color;
+  padding: 15px;
+
+  a {
+    color: $body-color;
+  }
+  .contact small {
+    &::after {
+      content: "|";
+      padding: 0 5px;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  footer {
+    flex-direction: column;
+    .contact {
+      display: flex;
+      flex-direction: column;
+      small {
+        &::after {
+          content: "";
+          padding: 0 5px;
+        }
+      }
+    }
+  }
+}

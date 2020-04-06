@@ -1,0 +1,55 @@
+@import "reset";
+
+$font-color: #544531;
+$body-color: #fffbf4;
+
+body {
+  font-family: arial, sans-serif;
+  color: $font-color;
+  background-color: $body-color;
+}
+
+a {
+  color: $font-color;
+}
+
+#root {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 768px) {
+  #root {
+    width: 750px;
+  }
+}
+
+@media (min-width: 992px) {
+  #root {
+    width: 970px;
+  }
+}
+
+@media (min-width: 1200px) {
+  #root {
+    width: 1170px;
+  }
+}
+
+.content {
+  margin-top: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .content {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}
+
+@import "header";
+@import "footer";
+@import "home";
+@import "about";
+@import "contact";
+@import "admin";

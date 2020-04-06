@@ -1,0 +1,19 @@
+.admin-banner {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 10px;
+  background: yellow;
+}
+
+.admin-content {
+  form {
+    display: flex;
+    flex-direction: column;
+
+    label,
+    input,
+    textarea {
+      margin-bottom: 10px;
+    }
+  }
+}
