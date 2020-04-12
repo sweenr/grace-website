@@ -1,16 +1,18 @@
 import React from "react"
+import { graphql } from "gatsby"
+import ReactMarkdown from "react-markdown"
 import StephenMinistryLogo from "../images/Stephen_Ministry_Logo_Black.png"
 
 function StephenMinistryTemplate({ data }) {
   const { markdownRemark } = data // data.markdownRemark holds your post data
-  const { frontmatter, html } = markdownRemark
+  const { frontmatter } = markdownRemark
   return (
     <>
       <div className="content about-content flip-layout">
         <div className="info-block">
           <div>
             <h2>{frontmatter.aboutTitle}</h2>
-            <p>{frontmatter.about}</p>
+            <ReactMarkdown source={frontmatter.about} />
           </div>
           <img src={StephenMinistryLogo} alt="Stephen Ministry Logo" />
         </div>
@@ -18,7 +20,7 @@ function StephenMinistryTemplate({ data }) {
         <div className="info-block">
           <div>
             <h2 className="section-title">{frontmatter.contactTitle}</h2>
-            <p>{frontmatter.contact}</p>
+            <ReactMarkdown source={frontmatter.contact} />
           </div>
         </div>
       </div>
@@ -31,7 +33,6 @@ export default StephenMinistryTemplate
 export const pageQuery = graphql`
   query($path: String!) {
     markdownRemark(frontmatter: { path: { eq: $path } }) {
-      html
       frontmatter {
         path
         title

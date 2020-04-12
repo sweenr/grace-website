@@ -1,12 +1,13 @@
 import React from "react"
-import ReactHtmlParser from "react-html-parser"
+import { graphql } from "gatsby"
+import ReactMarkdown from "react-markdown"
 import ChurchFront from "../images/grace_wide.jpg"
 import ELCALogo from "../images/ELCA_Logo.gif"
 import StephenMinistry from "../images/Stephen_Ministry_Logo_Blue.png"
 
 function HomeTemplate({ data }) {
   const { markdownRemark } = data // data.markdownRemark holds your post data
-  const { frontmatter, html } = markdownRemark
+  const { frontmatter } = markdownRemark
 
   return (
     <>
@@ -16,7 +17,7 @@ function HomeTemplate({ data }) {
         <div className="home-info">
           <div className="info-block">
             <h2>About Grace Lutheran Church</h2>
-            {ReactHtmlParser(frontmatter.about)}
+            <ReactMarkdown source={frontmatter.about} />
           </div>
 
           <div className="info-block images">
@@ -34,7 +35,7 @@ function HomeTemplate({ data }) {
 
           <div className="info-block">
             <h2>{frontmatter.newsHeadline}</h2>
-            {ReactHtmlParser(frontmatter.newsBody)}
+            <ReactMarkdown source={frontmatter.newsBody} />
           </div>
         </div>
 
@@ -71,7 +72,6 @@ export default HomeTemplate
 export const pageQuery = graphql`
   query($path: String!) {
     markdownRemark(frontmatter: { path: { eq: $path } }) {
-      html
       frontmatter {
         path
         title

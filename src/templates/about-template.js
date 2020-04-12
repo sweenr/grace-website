@@ -1,26 +1,26 @@
 import React from "react"
 import { graphql } from "gatsby"
-import ReactHtmlParser from "react-html-parser"
+import ReactMarkdown from "react-markdown"
 import GraceLogo from "../images/luther_rose.png"
 import PastorDave from "../images/pastordave.jpg"
 import GraceFrontCross from "../images/grace_front_cross_square.jpg"
 
 function AboutTemplate({ data }) {
   const { markdownRemark } = data // data.markdownRemark holds your post data
-  const { frontmatter, html } = markdownRemark
+  const { frontmatter } = markdownRemark
   return (
     <>
       <div className="content about-content flip-layout">
         <div className="info-block">
           <div>
             <h2>{frontmatter.aboutTitle}</h2>
-            {ReactHtmlParser(frontmatter.about)}
+            <ReactMarkdown source={frontmatter.about} />
           </div>
         </div>
         <div className="info-block">
           <div>
             <h2>{frontmatter.missionTitle}</h2>
-            {ReactHtmlParser(frontmatter.mission)}
+            <ReactMarkdown source={frontmatter.mission} />
           </div>
           <img
             className="img-circle img-responsive"
@@ -31,7 +31,7 @@ function AboutTemplate({ data }) {
         <div className="info-block">
           <div>
             <h2>{frontmatter.messageTitle}</h2>
-            {ReactHtmlParser(frontmatter.message)}
+            <ReactMarkdown source={frontmatter.message} />
           </div>
           <img
             className="img-circle img-responsive"
@@ -42,7 +42,7 @@ function AboutTemplate({ data }) {
         <div className="info-block">
           <div>
             <h2>{frontmatter.believeTitle}</h2>
-            {ReactHtmlParser(frontmatter.believe)}
+            <ReactMarkdown source={frontmatter.believe} />
           </div>
           <img
             className="img-circle img-responsive"
@@ -60,7 +60,6 @@ export default AboutTemplate
 export const pageQuery = graphql`
   query($path: String!) {
     markdownRemark(frontmatter: { path: { eq: $path } }) {
-      html
       frontmatter {
         path
         title
