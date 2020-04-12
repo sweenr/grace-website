@@ -71,3 +71,14 @@ collections:
           - { label: "About Text", name: "about", widget: markdown }
           - { label: "Contact Title", name: "contactTitle", widget: string }
           - { label: "Contact Text", name: "contact", widget: markdown }
+      - file: "src/markdown-pages/newsletter.md"
+        label: "Newsletter"
+        name: "newsletter"
+        fields:
+          - {
+              label: "Template Key",
+              name: "templateKey",
+              widget: "hidden",
+              default: "newsletter-page",
+            }
+          - { label: "Newsletter", name: "newsletter", widget: file }
