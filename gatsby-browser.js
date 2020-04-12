@@ -5,9 +5,9 @@
  */
 import React from "react"
 import Layout from "./src/components/Layout"
-import Amplify from "aws-amplify"
 import awsconfig from "./src/aws-exports"
 
+let configUpdate = awsconfig
 if (typeof window !== `undefined`) {
   const hostedDomainName = "d1fju52soaxewq.amplifyapp.com/"
   let redirectUrl = "https://" + hostedDomainName + "/"
@@ -29,13 +29,15 @@ if (typeof window !== `undefined`) {
     redirectSignOut: redirectUrl,
     responseType: "code",
   }
-  let configUpdate = awsconfig
-  configUpdate.oauth = oauth
 
-  Amplify.configure(configUpdate)
+  configUpdate.oauth = oauth
 }
 
 // Wraps every page in a component
 export const wrapPageElement = ({ element, props }) => {
-  return <Layout {...props}>{element}</Layout>
+  return (
+    <Layout {...props} awsconfig={configUpdate}>
+      {element}
+    </Layout>
+  )
 }

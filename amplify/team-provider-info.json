@@ -30,5 +30,32 @@
                 }
             }
         }
+    },
+    "gatsby": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-grace-website-gatsby-193159-authRole",
+            "UnauthRoleArn": "arn:aws:iam::848840127659:role/amplify-grace-website-gatsby-193159-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::848840127659:role/amplify-grace-website-gatsby-193159-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-grace-website-gatsby-193159-deployment",
+            "UnauthRoleName": "amplify-grace-website-gatsby-193159-unauthRole",
+            "StackName": "amplify-grace-website-gatsby-193159",
+            "StackId": "arn:aws:cloudformation:us-east-1:848840127659:stack/amplify-grace-website-gatsby-193159/87ef3580-79f9-11ea-a4c1-0a8267cebc39",
+            "AmplifyAppId": "d1fju52soaxewq"
+        },
+        "categories": {
+            "auth": {
+                "gracewebsite11e45b9e": {
+                    "hostedUIProviderCreds": "[{\"ProviderName\":\"Google\",\"client_id\":\"926289419968-16tiivj3b1bkbsesb50snrekc8v444ol.apps.googleusercontent.com\",\"client_secret\":\"dCr-eO4_ZO0R-V-3uaHbscoq\"}]",
+                    "googleClientId": "926289419968-16tiivj3b1bkbsesb50snrekc8v444ol.apps.googleusercontent.com"
+                }
+            },
+            "hosting": {
+                "amplifyhosting": {
+                    "appId": "d1fju52soaxewq",
+                    "type": "manual"
+                }
+            }
+        }
     }
 }

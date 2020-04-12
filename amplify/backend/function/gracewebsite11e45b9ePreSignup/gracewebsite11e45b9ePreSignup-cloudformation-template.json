@@ -108,7 +108,7 @@
 				"Runtime": "nodejs10.x",
 				"Timeout": "25",
 				"Code": {
-					"S3Bucket": "amplify-grace-website-prod-143846-deployment",
+					"S3Bucket": "amplify-grace-website-gatsby-193159-deployment",
 					"S3Key": "amplify-builds/gracewebsite11e45b9ePreSignup-366163796b6c574d3250-build.zip"
 				}
 			}
