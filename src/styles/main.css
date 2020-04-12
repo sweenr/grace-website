@@ -85,7 +85,7 @@ footer .contact small::after { content: "|"; padding: 0 5px; }
 
 h2 { margin-bottom: 15px; text-transform: uppercase; font-weight: 500; }
 
-.info-block { display: inline-block; margin-bottom: 15px; }
+.info-block { display: block; margin-bottom: 15px; }
 
 .info-block.images { display: -webkit-box; display: -ms-flexbox; display: flex; -ms-flex-pack: distribute; justify-content: space-around; }
 
@@ -133,9 +133,7 @@ h2 { margin-bottom: 15px; text-transform: uppercase; font-weight: 500; }
 @media screen and (max-width: 768px) { .contact-content { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; }
   .contact-content .sidebar { margin-top: 15px; } }
 
-.admin-banner { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between; padding: 20px 10px; background: yellow; }
+.newsletter-container { position: relative; padding-bottom: 50%; padding-top: 35px; height: 0; overflow: hidden; }
 
-.admin-content form { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; }
-
-.admin-content form label, .admin-content form input, .admin-content form textarea { margin-bottom: 10px; }
+.newsletter-container object { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 /*# sourceMappingURL=main.css.map */

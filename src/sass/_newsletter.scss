@@ -1,0 +1,15 @@
+.newsletter-container {
+  position: relative;
+  padding-bottom: 50%;
+  padding-top: 35px;
+  height: 0;
+  overflow: hidden;
+}
+
+.newsletter-container object {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
