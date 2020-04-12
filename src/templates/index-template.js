@@ -1,19 +1,12 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 import ReactHtmlParser from "react-html-parser"
 import ChurchFront from "../images/grace_wide.jpg"
 import ELCALogo from "../images/ELCA_Logo.gif"
 import StephenMinistry from "../images/Stephen_Ministry_Logo_Blue.png"
 
-const initialState = {
-  worshipTimes: null,
-  about:
-    "Grace Lutheran Church, located in Long Beach, MS, is a congregation of the Southeastern Synod of the Evangelical Lutheran Church in America, and also a Stephen Ministry church. We invite you to learn more about our congregation, and to join us for worship on Sunday morning. Find out more about the congregation, and feel free to get in touch or join us on Sunday morning!",
-  newsHeadline: "Latest News",
-  newsBody: "Here's what's happening in the congregation!",
-}
-
-function Home() {
-  const [homeData, setHomeData] = useState(initialState)
+function HomeTemplate({ data }) {
+  const { markdownRemark } = data // data.markdownRemark holds your post data
+  const { frontmatter, html } = markdownRemark
 
   return (
     <>
@@ -23,7 +16,7 @@ function Home() {
         <div className="home-info">
           <div className="info-block">
             <h2>About Grace Lutheran Church</h2>
-            {ReactHtmlParser(homeData.about)}
+            {ReactHtmlParser(frontmatter.about)}
           </div>
 
           <div className="info-block images">
@@ -40,8 +33,8 @@ function Home() {
           </div>
 
           <div className="info-block">
-            <h2>{homeData.newsHeadline}</h2>
-            {ReactHtmlParser(homeData.newsBody)}
+            <h2>{frontmatter.newsHeadline}</h2>
+            {ReactHtmlParser(frontmatter.newsBody)}
           </div>
         </div>
 
@@ -73,4 +66,19 @@ function Home() {
   )
 }
 
-export default Home
+export default HomeTemplate
+
+export const pageQuery = graphql`
+  query($path: String!) {
+    markdownRemark(frontmatter: { path: { eq: $path } }) {
+      html
+      frontmatter {
+        path
+        title
+        about
+        newsHeadline
+        newsBody
+      }
+    }
+  }
+`

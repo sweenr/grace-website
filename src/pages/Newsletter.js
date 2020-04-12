@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 
 function Newsletter() {
   return (
@@ -13,7 +13,7 @@ function Newsletter() {
         </div>
       </div>
     </>
-  );
+  )
 }
 
-export default Newsletter;
+export default Newsletter
