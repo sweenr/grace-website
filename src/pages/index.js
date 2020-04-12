@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { API } from "aws-amplify";
-import ReactHtmlParser from "react-html-parser";
-import { listHomePages } from "../graphql/queries";
-import ChurchFront from "../images/grace_wide.jpg";
-import ELCALogo from "../images/ELCA_Logo.gif";
-import StephenMinistry from "../images/Stephen_Ministry_Logo_Blue.png";
+import React, { useState, useEffect } from "react"
+import ReactHtmlParser from "react-html-parser"
+import ChurchFront from "../images/grace_wide.jpg"
+import ELCALogo from "../images/ELCA_Logo.gif"
+import StephenMinistry from "../images/Stephen_Ministry_Logo_Blue.png"
 
 const initialState = {
   worshipTimes: null,
@@ -12,18 +10,10 @@ const initialState = {
     "Grace Lutheran Church, located in Long Beach, MS, is a congregation of the Southeastern Synod of the Evangelical Lutheran Church in America, and also a Stephen Ministry church. We invite you to learn more about our congregation, and to join us for worship on Sunday morning. Find out more about the congregation, and feel free to get in touch or join us on Sunday morning!",
   newsHeadline: "Latest News",
   newsBody: "Here's what's happening in the congregation!",
-};
+}
 
 function Home() {
-  const [homeData, setHomeData] = useState(initialState);
-
-  useEffect(() => {
-    API.graphql({ query: listHomePages, authMode: "AWS_IAM" }).then(
-      (response) => {
-        setHomeData(response.data.listHomePages.items[0]);
-      }
-    );
-  }, []);
+  const [homeData, setHomeData] = useState(initialState)
 
   return (
     <>
@@ -80,7 +70,7 @@ function Home() {
         </div>
       </div>
     </>
-  );
+  )
 }
 
-export default Home;
+export default Home

@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from "react";
-import ReactHtmlParser from "react-html-parser";
-import { API } from "aws-amplify";
-import { listAboutPages } from "../graphql/queries";
-import GraceLogo from "../images/luther_rose.png";
-import PastorDave from "../images/pastordave.jpg";
-import GraceFrontCross from "../images/grace_front_cross_square.jpg";
+import React, { useState, useEffect } from "react"
+import ReactHtmlParser from "react-html-parser"
+import GraceLogo from "../images/luther_rose.png"
+import PastorDave from "../images/pastordave.jpg"
+import GraceFrontCross from "../images/grace_front_cross_square.jpg"
 
 const initialState = {
   aboutTitle: "About Grace Lutheran Church",
@@ -17,18 +15,10 @@ const initialState = {
   message: "Coming soon!",
   believeTitle: "What We Believe",
   believe: "Coming soon!",
-};
+}
 
 function About() {
-  const [aboutData, setAboutData] = useState(initialState);
-
-  useEffect(() => {
-    API.graphql({ query: listAboutPages, authMode: "AWS_IAM" }).then(
-      (response) => {
-        setAboutData(response.data.listAboutPages.items[0]);
-      }
-    );
-  }, []);
+  const [aboutData, setAboutData] = useState(initialState)
 
   return (
     <>
@@ -74,7 +64,7 @@ function About() {
         </div>
       </div>
     </>
-  );
+  )
 }
 
-export default About;
+export default About
