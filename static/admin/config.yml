@@ -31,9 +31,9 @@ collections:
               widget: "hidden",
               default: "index-page",
             }
-          - { label: "About Text", name: "about", widget: string }
+          - { label: "About Text", name: "about", widget: markdown }
           - { label: "News Headline", name: "newsHeadline", widget: string }
-          - { label: "News Body", name: "newsBody", widget: string }
+          - { label: "News Body", name: "newsBody", widget: markdown }
       - file: "src/markdown-pages/about.md"
         label: "About"
         name: "about"
@@ -45,13 +45,13 @@ collections:
               default: "about-page",
             }
           - { label: "About Title", name: "aboutTitle", widget: string }
-          - { label: "About Text", name: "about", widget: string }
+          - { label: "About Text", name: "about", widget: markdown }
           - { label: "Mission Title", name: "missionTitle", widget: string }
-          - { label: "Mission Text", name: "mission", widget: string }
+          - { label: "Mission Text", name: "mission", widget: markdown }
           - { label: "Message Title", name: "messageTitle", widget: string }
-          - { label: "Message Text", name: "message", widget: string }
+          - { label: "Message Text", name: "message", widget: markdown }
           - { label: "We Believe Title", name: "believeTitle", widget: string }
-          - { label: "We Believe Text", name: "believe", widget: string }
+          - { label: "We Believe Text", name: "believe", widget: markdown }
       - file: "src/markdown-pages/stephenministry.md"
         label: "Stephen Ministry"
         name: "stephenministry"
@@ -62,6 +62,7 @@ collections:
               widget: "hidden",
               default: "index-page",
             }
-          - { label: "About Text", name: "about", widget: string }
-          - { label: "News Headline", name: "newsHeadline", widget: string }
-          - { label: "News Body", name: "newsBody", widget: string }
+          - { label: "About Title", name: "aboutTitle", widget: string }
+          - { label: "About Text", name: "about", widget: markdown }
+          - { label: "Contact Title", name: "contactTitle", widget: string }
+          - { label: "Contact Text", name: "contact", widget: markdown }
