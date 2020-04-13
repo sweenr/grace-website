@@ -22,7 +22,7 @@ function Newsletter({ data }) {
                 height="600"
               >
                 <p>
-                  June Newsletter - Download{" "}
+                  This month's Newsletter - Download{" "}
                   <a href={frontmatter.newsletter}>here</a>
                 </p>
               </object>
