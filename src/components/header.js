@@ -1,9 +1,8 @@
 import React from "react"
-import { Link } from "gatsby"
+import { Link, useStaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
 
-function Header({ data }) {
-  // if (typeof document !== `undefined`) {
+function Header() {
   const toggleMenu = () => {
     var x = document.getElementById("menuList")
     if (x.className === "menu") {
@@ -12,7 +11,18 @@ function Header({ data }) {
       x.className = "menu"
     }
   }
-  // }
+
+  const data = useStaticQuery(graphql`
+    query {
+      lutherRose: file(relativePath: { eq: "luther_rose.png" }) {
+        childImageSharp {
+          fixed(width: 100) {
+            ...GatsbyImageSharpFixed
+          }
+        }
+      }
+    }
+  `)
 
   return (
     <header className="site-header">
@@ -58,15 +68,3 @@ function Header({ data }) {
 }
 
 export default Header
-
-export const pageQuery = graphql`
-  query {
-    lutherRose: file(relativePath: { eq: "luther_rose.png" }) {
-      childImageSharp {
-        fixed(width: 100) {
-          ...GatsbyImageSharpFixed
-        }
-      }
-    }
-  }
-`

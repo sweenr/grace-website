@@ -49,13 +49,13 @@ a { color: #544531; }
 
 header { padding-top: 50px; padding-bottom: 30px; }
 
-.branding { text-decoration: none; color: #544531; }
+.branding { text-decoration: none; color: #544531; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; -webkit-box-align: center; -ms-flex-align: center; align-items: center; }
 
-.branding img { width: 100px; height: 100px; margin: 10px auto; }
+.branding img { width: 100px; height: 100px; }
 
-.branding h1 { text-align: center; text-transform: uppercase; font-weight: 500; font-size: 28px; }
+.branding h1 { text-transform: uppercase; font-weight: 500; font-size: 28px; }
 
-.branding p { text-align: center; text-transform: uppercase; margin-bottom: 10px; }
+.branding p { text-transform: uppercase; margin-bottom: 10px; }
 
 .main-navigation { padding: 20px 0; border-top: 1px solid #e5e5e5; }
 
