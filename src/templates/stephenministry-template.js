@@ -1,7 +1,7 @@
 import React from "react"
 import { graphql } from "gatsby"
+import Img from "gatsby-image"
 import ReactMarkdown from "react-markdown"
-import StephenMinistryLogo from "../images/Stephen_Ministry_Logo_Black.png"
 import { Helmet } from "react-helmet"
 
 function StephenMinistryTemplate({ data }) {
@@ -18,7 +18,10 @@ function StephenMinistryTemplate({ data }) {
             <h2>{frontmatter.aboutTitle}</h2>
             <ReactMarkdown source={frontmatter.about} />
           </div>
-          <img src={StephenMinistryLogo} alt="Stephen Ministry Logo" />
+          <Img
+            fixed={data.stephenMinistry.childImageSharp.fixed}
+            alt="Stephen Ministry Logo"
+          />
         </div>
 
         <div className="info-block">
@@ -44,6 +47,15 @@ export const pageQuery = graphql`
         about
         contactTitle
         contact
+      }
+    }
+    stephenMinistry: file(
+      relativePath: { eq: "Stephen_Ministry_Logo_Black.png" }
+    ) {
+      childImageSharp {
+        fixed(width: 200) {
+          ...GatsbyImageSharpFixed
+        }
       }
     }
   }

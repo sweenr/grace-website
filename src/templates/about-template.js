@@ -1,9 +1,7 @@
 import React from "react"
 import { graphql } from "gatsby"
+import Img from "gatsby-image"
 import ReactMarkdown from "react-markdown"
-import GraceLogo from "../images/luther_rose.png"
-import PastorDave from "../images/pastordave.jpg"
-import GraceFrontCross from "../images/grace_front_cross_square.jpg"
 import { Helmet } from "react-helmet"
 
 function AboutTemplate({ data }) {
@@ -26,10 +24,10 @@ function AboutTemplate({ data }) {
             <h2>{frontmatter.missionTitle}</h2>
             <ReactMarkdown source={frontmatter.mission} />
           </div>
-          <img
-            className="img-circle img-responsive"
-            src={GraceLogo}
+          <Img
+            fixed={data.lutherRose.childImageSharp.fixed}
             alt="Grace Logo"
+            className="img-circle img-responsive"
           />
         </div>
         <div className="info-block">
@@ -37,10 +35,10 @@ function AboutTemplate({ data }) {
             <h2>{frontmatter.messageTitle}</h2>
             <ReactMarkdown source={frontmatter.message} />
           </div>
-          <img
-            className="img-circle img-responsive"
-            src={PastorDave}
+          <Img
+            fixed={data.pastorDave.childImageSharp.fixed}
             alt="Pastor Dave Parr"
+            className="img-circle img-responsive"
           />
         </div>
         <div className="info-block">
@@ -48,10 +46,10 @@ function AboutTemplate({ data }) {
             <h2>{frontmatter.believeTitle}</h2>
             <ReactMarkdown source={frontmatter.believe} />
           </div>
-          <img
-            className="img-circle img-responsive"
-            src={GraceFrontCross}
+          <Img
+            fixed={data.churchCross.childImageSharp.fixed}
             alt="Grace Church Cross"
+            className="img-circle img-responsive"
           />
         </div>
       </div>
@@ -75,6 +73,27 @@ export const pageQuery = graphql`
         message
         believeTitle
         believe
+      }
+    }
+    lutherRose: file(relativePath: { eq: "luther_rose.png" }) {
+      childImageSharp {
+        fixed(width: 250) {
+          ...GatsbyImageSharpFixed
+        }
+      }
+    }
+    pastorDave: file(relativePath: { eq: "pastordave.jpg" }) {
+      childImageSharp {
+        fixed(width: 250) {
+          ...GatsbyImageSharpFixed
+        }
+      }
+    }
+    churchCross: file(relativePath: { eq: "grace_front_cross_square.jpg" }) {
+      childImageSharp {
+        fixed(width: 250) {
+          ...GatsbyImageSharpFixed
+        }
       }
     }
   }

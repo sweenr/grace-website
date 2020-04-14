@@ -1,10 +1,8 @@
 import React from "react"
 import { graphql } from "gatsby"
 import ReactMarkdown from "react-markdown"
-import ChurchFront from "../images/grace_wide.jpg"
-import ELCALogo from "../images/ELCA_Logo.gif"
-import StephenMinistry from "../images/Stephen_Ministry_Logo_Blue.png"
 import { Helmet } from "react-helmet"
+import Img from "gatsby-image"
 
 function HomeTemplate({ data }) {
   const { markdownRemark } = data // data.markdownRemark holds your post data
@@ -15,7 +13,10 @@ function HomeTemplate({ data }) {
       <Helmet>
         <title>Home</title>
       </Helmet>
-      <img src={ChurchFront} alt="Front of Grace Lutheran Church" />
+      <Img
+        fluid={data.graceWide.childImageSharp.fluid}
+        alt="Front of Grace Lutheran Church"
+      />
 
       <div className="content home-content">
         <div className="home-info">
@@ -26,14 +27,20 @@ function HomeTemplate({ data }) {
 
           <div className="info-block images">
             <a href="http://elca.org" target="_blank" rel="noopener noreferrer">
-              <img src={ELCALogo} alt="ELCA Logo" />
+              <Img
+                fixed={data.elcaLogo.childImageSharp.fixed}
+                alt="ELCA Logo"
+              />
             </a>
             <a
               href="http://stevenministry.org"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img src={StephenMinistry} alt="Stepen Ministry Logo" />
+              <Img
+                fixed={data.smLogo.childImageSharp.fixed}
+                alt="Stepen Ministry Logo"
+              />
             </a>
           </div>
 
@@ -82,6 +89,27 @@ export const pageQuery = graphql`
         about
         newsHeadline
         newsBody
+      }
+    }
+    graceWide: file(relativePath: { eq: "grace_wide.jpg" }) {
+      childImageSharp {
+        fluid(maxWidth: 1200) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    elcaLogo: file(relativePath: { eq: "ELCA_Logo.png" }) {
+      childImageSharp {
+        fixed(height: 100) {
+          ...GatsbyImageSharpFixed
+        }
+      }
+    }
+    smLogo: file(relativePath: { eq: "Stephen_Ministry_Logo_Blue.png" }) {
+      childImageSharp {
+        fixed(height: 100) {
+          ...GatsbyImageSharpFixed
+        }
       }
     }
   }

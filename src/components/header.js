@@ -1,23 +1,26 @@
-import React from "react";
-import { Link } from "gatsby";
-import GraceLogo from "../images/luther_rose.png";
+import React from "react"
+import { Link } from "gatsby"
+import Img from "gatsby-image"
 
 function Header() {
   // if (typeof document !== `undefined`) {
-  const toggleMenu = () => {
-    var x = document.getElementById("menuList");
+  const toggleMenu = ({ data }) => {
+    var x = document.getElementById("menuList")
     if (x.className === "menu") {
-      x.className += " responsive";
+      x.className += " responsive"
     } else {
-      x.className = "menu";
+      x.className = "menu"
     }
-  };
+  }
   // }
 
   return (
     <header className="site-header">
       <Link to="/" className="branding">
-        <img src={GraceLogo} alt="Grace Lutheran Church Logo" />
+        <Img
+          fixed={data.lutherRose.childImageSharp.fixed}
+          alt="Grace Lutheran Church Logo"
+        />
         <h1>Grace Lutheran Church</h1>
         <p className="text-uppercase">Long Beach, MS</p>
       </Link>
@@ -51,7 +54,19 @@ function Header() {
         </ul>
       </nav>
     </header>
-  );
+  )
 }
 
-export default Header;
+export default Header
+
+export const pageQuery = graphql`
+  query {
+    lutherRose: file(relativePath: { eq: "luther_rose.png" }) {
+      childImageSharp {
+        fixed(width: 100) {
+          ...GatsbyImageSharpFixed
+        }
+      }
+    }
+  }
+`
