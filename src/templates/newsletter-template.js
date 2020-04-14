@@ -1,4 +1,6 @@
 import React from "react"
+import { Helmet } from "react-helmet"
+import { graphql } from "gatsby"
 
 function Newsletter({ data }) {
   const { markdownRemark } = data // data.markdownRemark holds your post data
@@ -6,6 +8,9 @@ function Newsletter({ data }) {
 
   return (
     <>
+      <Helmet>
+        <title>Newsletter</title>
+      </Helmet>
       <div className="content">
         <div className="info-block">
           <div>

@@ -1,9 +1,14 @@
 import React from "react"
+import { Helmet } from "react-helmet"
+import { graphql } from "gatsby"
 
 function Sermons({ data }) {
   const sermons = data.allMarkdownRemark.edges
   return (
     <>
+      <Helmet>
+        <title>Sermons</title>
+      </Helmet>
       <div className="content">
         <div className="info-block">
           <h2>Sermons</h2>

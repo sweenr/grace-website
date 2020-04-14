@@ -4,6 +4,7 @@ import ReactMarkdown from "react-markdown"
 import ChurchFront from "../images/grace_wide.jpg"
 import ELCALogo from "../images/ELCA_Logo.gif"
 import StephenMinistry from "../images/Stephen_Ministry_Logo_Blue.png"
+import { Helmet } from "react-helmet"
 
 function HomeTemplate({ data }) {
   const { markdownRemark } = data // data.markdownRemark holds your post data
@@ -11,6 +12,9 @@ function HomeTemplate({ data }) {
 
   return (
     <>
+      <Helmet>
+        <title>Home</title>
+      </Helmet>
       <img src={ChurchFront} alt="Front of Grace Lutheran Church" />
 
       <div className="content home-content">

@@ -1,11 +1,15 @@
 import React from "react"
 import { graphql } from "gatsby"
+import { Helmet } from "react-helmet"
 
 function SermonTemplate({ data }) {
   const { markdownRemark } = data // data.markdownRemark holds your post data
   const { frontmatter, html } = markdownRemark
   return (
     <>
+      <Helmet>
+        <title>{frontmatter.title}</title>
+      </Helmet>
       <article>
         <header>
           <h1>{frontmatter.title}</h1>

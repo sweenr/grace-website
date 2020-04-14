@@ -4,12 +4,16 @@ import ReactMarkdown from "react-markdown"
 import GraceLogo from "../images/luther_rose.png"
 import PastorDave from "../images/pastordave.jpg"
 import GraceFrontCross from "../images/grace_front_cross_square.jpg"
+import { Helmet } from "react-helmet"
 
 function AboutTemplate({ data }) {
   const { markdownRemark } = data // data.markdownRemark holds your post data
   const { frontmatter } = markdownRemark
   return (
     <>
+      <Helmet>
+        <title>About</title>
+      </Helmet>
       <div className="content about-content flip-layout">
         <div className="info-block">
           <div>

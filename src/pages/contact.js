@@ -1,8 +1,12 @@
-import React from "react";
+import React from "react"
+import { Helmet } from "react-helmet"
 
 function Contact() {
   return (
     <>
+      <Helmet>
+        <title>Contact</title>
+      </Helmet>
       <div className="content">
         <h2>Contact</h2>
         <div className="contact-content">
@@ -64,7 +68,7 @@ function Contact() {
         </div>
       </div>
     </>
-  );
+  )
 }
 
-export default Contact;
+export default Contact

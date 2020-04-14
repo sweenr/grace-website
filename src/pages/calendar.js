@@ -1,8 +1,12 @@
-import React from "react";
+import React from "react"
+import { Helmet } from "react-helmet"
 
 function Calendar() {
   return (
     <>
+      <Helmet>
+        <title>Calendar</title>
+      </Helmet>
       <div className="calendar-container">
         <iframe
           src="https://calendar.google.com/calendar/embed?src=office%40gracelongbeach.com&ctz=America/Chicago"
@@ -15,7 +19,7 @@ function Calendar() {
         ></iframe>
       </div>
     </>
-  );
+  )
 }
 
-export default Calendar;
+export default Calendar
