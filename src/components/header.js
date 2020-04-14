@@ -2,9 +2,9 @@ import React from "react"
 import { Link } from "gatsby"
 import Img from "gatsby-image"
 
-function Header() {
+function Header({ data }) {
   // if (typeof document !== `undefined`) {
-  const toggleMenu = ({ data }) => {
+  const toggleMenu = () => {
     var x = document.getElementById("menuList")
     if (x.className === "menu") {
       x.className += " responsive"
