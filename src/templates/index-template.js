@@ -54,22 +54,14 @@ function HomeTemplate({ data }) {
           <h2>Worship Times</h2>
           <table className="table-striped">
             <tbody>
-              <tr>
-                <td>Sunday School (All Ages)</td>
-                <td>8:45 AM</td>
-              </tr>
-              <tr>
-                <td>Sunday Worship</td>
-                <td>10:00 AM</td>
-              </tr>
-              <tr>
-                <td>Wednesday Holy Communion</td>
-                <td>Noon</td>
-              </tr>
-              <tr>
-                <td>Wednesday Evening Service</td>
-                <td>7:00 PM</td>
-              </tr>
+              {frontmatter.worshipTimes.map(({ label, time }) => {
+                return (
+                  <tr>
+                    <td>{label}</td>
+                    <td>{time}</td>
+                  </tr>
+                )
+              })}
             </tbody>
           </table>
         </div>
@@ -89,6 +81,10 @@ export const pageQuery = graphql`
         about
         newsHeadline
         newsBody
+        worshipTimes {
+          label
+          time
+        }
       }
     }
     graceWide: file(relativePath: { eq: "grace_wide.jpg" }) {
