@@ -40,9 +40,9 @@ collections:
           - { label: "News Headline", name: "newsHeadline", widget: string }
           - { label: "News Body", name: "newsBody", widget: markdown }
           - {
-              label: "Worship Times",
-              name: "worshipTimes",
-              widget: "list",
+              label: Worship Times,
+              name: worshipTimes,
+              widget: list,
               fields:
                 [
                   { label: Label, name: label, widget: string },
