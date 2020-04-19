@@ -3,7 +3,6 @@ path: /
 templatePath: index-template.js
 title: Home
 date: 2020-04-12
-worshipTimes: ""
 about: Grace Lutheran Church, located in Long Beach, MS, is a congregation of
   the Southeastern Synod of the [Evangelical Lutheran Church in
   America](http://elca.org/), and also a [Stephen
