@@ -1,7 +1,7 @@
 ---
-newsletter: /uploads/april-nl-2020.pdf
+newsletter: /uploads/may-nl-2020.pdf
 templatePath: newsletter-template.js
 path: /newsletter
 title: Newsletter
-date: 2020-04-12
+date: 2020-04-12T00:00:00.000Z
 ---
