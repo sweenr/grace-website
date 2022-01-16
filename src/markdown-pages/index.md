@@ -11,10 +11,10 @@ about: Grace Lutheran Church, located in Long Beach, MS, is a congregation of
   out more](/about/) about the congregation, and feel free to [get in
   touch](/contact/) or join us on Sunday morning!
 newsHeadline: Remote Worship Services
-newsBody: Due to the COVID-19 outbreak, Grace Lutheran Church will be suspending
-  in-person worship services until further notice. We will be holding remote
-  worship services at our normal times through the [Zoom
-  platform](https://zoom.us/). For more information, contact Pastor Dave at
+newsBody: Grace Lutheran Church is holding hybrid worship services with both
+  in-person services Sunday morning along with online worship over the [Zoom
+  platform](https://zoom.us/). For more information or to be added to the Zoom
+  invitation list, contact Pastor Dave at
   [gracepastordave1@gmail.com](mailto:gracepastordave1@gmail.com).
 worshipTimes:
   - label: Sunday School (All Ages)
