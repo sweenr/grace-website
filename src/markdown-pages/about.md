@@ -21,8 +21,23 @@ mission: |-
   * Give a tithe and beyond
 messageTitle: A Word From Pastor Dave
 message: Coming soon!
-date: 2020-04-12
-believe: Coming soon!
+date: 2020-04-12T00:00:00.000Z
+believe: >-
+  We believe that humanity is saved by faith in what God has done for us in
+  Jesus Christ. This is a gift of grace. Then our faith expresses itself in life
+  of love and service toward God and His people.
+
+
+  We place special emphasis on a Biblical and Christ-centered educational program for all ages.
+
+
+  We believe that individuals experience joy and peace in hearing from Jesus through worship, word, and holy communion.
+
+
+  We are concerned with the total well-being of individuals - spiritual, mental, physical, and social. 
+
+
+  We reach out to all of the world and its people with a message of forgiveness, hope, and salvation. We are saved by God's grace.
 title: About
 templatePath: about-template.js
 ---
