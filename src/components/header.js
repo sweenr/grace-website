@@ -1,6 +1,6 @@
 import React from "react"
-import { Link, useStaticQuery, graphql } from "gatsby"
-import Img from "gatsby-image"
+import { Link } from "gatsby"
+import { StaticImage } from "gatsby-plugin-image"
 
 function Header() {
   const toggleMenu = () => {
@@ -12,24 +12,15 @@ function Header() {
     }
   }
 
-  const data = useStaticQuery(graphql`
-    query {
-      lutherRose: file(relativePath: { eq: "luther_rose.png" }) {
-        childImageSharp {
-          fixed(width: 100) {
-            ...GatsbyImageSharpFixed
-          }
-        }
-      }
-    }
-  `)
-
   return (
     <header className="site-header">
       <Link to="/" className="branding">
-        <Img
-          fixed={data.lutherRose.childImageSharp.fixed}
+        <StaticImage
+          src={"../images/luther_rose.png"}
           alt="Grace Lutheran Church Logo"
+          placeholder="blurred"
+          layout="fixed"
+          width={100}
         />
         <h1>Grace Lutheran Church</h1>
         <p className="text-uppercase">Long Beach, MS</p>

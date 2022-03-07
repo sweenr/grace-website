@@ -1,39 +1,42 @@
 import React from "react"
 import { graphql } from "gatsby"
-import Img from "gatsby-image"
+import { StaticImage } from "gatsby-plugin-image"
 import ReactMarkdown from "react-markdown"
 import { Helmet } from "react-helmet"
 
-function StephenMinistryTemplate({ data }) {
-  const { markdownRemark } = data // data.markdownRemark holds your post data
-  const { frontmatter } = markdownRemark
-  return (
-    <>
-      <Helmet>
-        <title>Stephen Ministry</title>
-      </Helmet>
-      <div className="content about-content flip-layout">
-        <div className="info-block">
-          <div>
-            <h2>{frontmatter.aboutTitle}</h2>
-            <ReactMarkdown source={frontmatter.about} />
-          </div>
-          <Img
-            fixed={data.stephenMinistry.childImageSharp.fixed}
-            alt="Stephen Ministry Logo"
-          />
+const StephenMinistryTemplate = ({
+  data: {
+    markdownRemark: { frontmatter },
+  },
+}) => (
+  <>
+    <Helmet>
+      <title>Stephen Ministry</title>
+    </Helmet>
+    <div className="content about-content flip-layout">
+      <div className="info-block">
+        <div>
+          <h2>{frontmatter.aboutTitle}</h2>
+          <ReactMarkdown children={frontmatter.about} />
         </div>
+        <StaticImage
+          src="../images/Stephen_Ministry_Logo_Black.png"
+          alt="Stephen Ministry Logo"
+          layout="fixed"
+          placeholder="blurred"
+          width={200}
+        />
+      </div>
 
-        <div className="info-block">
-          <div>
-            <h2 className="section-title">{frontmatter.contactTitle}</h2>
-            <ReactMarkdown source={frontmatter.contact} />
-          </div>
+      <div className="info-block">
+        <div>
+          <h2 className="section-title">{frontmatter.contactTitle}</h2>
+          <ReactMarkdown children={frontmatter.contact} />
         </div>
       </div>
-    </>
-  )
-}
+    </div>
+  </>
+)
 
 export default StephenMinistryTemplate
 
@@ -47,15 +50,6 @@ export const pageQuery = graphql`
         about
         contactTitle
         contact
-      }
-    }
-    stephenMinistry: file(
-      relativePath: { eq: "Stephen_Ministry_Logo_Black.png" }
-    ) {
-      childImageSharp {
-        fixed(width: 200) {
-          ...GatsbyImageSharpFixed
-        }
       }
     }
   }

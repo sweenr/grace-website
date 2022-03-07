@@ -2,6 +2,9 @@ backend:
   name: git-gateway
   branch: master
 
+site_url: https://gracelongbeach.com
+display_url: https://gracelongbeach.com
+
 media_folder: static/uploads
 public_folder: /uploads
 

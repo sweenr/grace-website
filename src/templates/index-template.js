@@ -2,73 +2,72 @@ import React from "react"
 import { graphql } from "gatsby"
 import ReactMarkdown from "react-markdown"
 import { Helmet } from "react-helmet"
-import Img from "gatsby-image"
+import { StaticImage } from "gatsby-plugin-image"
 
-function HomeTemplate({ data }) {
-  const { markdownRemark } = data // data.markdownRemark holds your post data
-  const { frontmatter } = markdownRemark
-
-  return (
-    <>
-      <Helmet>
-        <title>Home</title>
-      </Helmet>
-      <Img
-        fluid={data.graceWide.childImageSharp.fluid}
-        alt="Front of Grace Lutheran Church"
-      />
-
-      <div className="content home-content">
-        <div className="home-info">
-          <div className="info-block">
-            <h2>About Grace Lutheran Church</h2>
-            <ReactMarkdown source={frontmatter.about} />
-          </div>
-
-          <div className="info-block images">
-            <a href="http://elca.org" target="_blank" rel="noopener noreferrer">
-              <Img
-                fixed={data.elcaLogo.childImageSharp.fixed}
-                alt="ELCA Logo"
-              />
-            </a>
-            <a
-              href="http://stevenministry.org"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Img
-                fixed={data.smLogo.childImageSharp.fixed}
-                alt="Stepen Ministry Logo"
-              />
-            </a>
-          </div>
-
-          <div className="info-block">
-            <h2>{frontmatter.newsHeadline}</h2>
-            <ReactMarkdown source={frontmatter.newsBody} />
-          </div>
-        </div>
-
+const HomeTemplate = ({
+  data: {
+    markdownRemark: { frontmatter },
+  },
+}) => (
+  <>
+    <Helmet>
+      <title>Home</title>
+    </Helmet>
+    <StaticImage
+      src="../images/grace_wide.jpg"
+      alt="Front of Grace Lutheran Church"
+      placeholder="blurred"
+      width={1170}
+    />
+    <div className="content home-content">
+      <div className="home-info">
         <div className="info-block">
-          <h2>Worship Times</h2>
-          <table className="table-striped">
-            <tbody>
-              {frontmatter.worshipTimes.map(({ label, time }) => {
-                return (
-                  <tr>
-                    <td>{label}</td>
-                    <td>{time}</td>
-                  </tr>
-                )
-              })}
-            </tbody>
-          </table>
+          <h2>About Grace Lutheran Church</h2>
+          <ReactMarkdown children={frontmatter.about} />
+        </div>
+        <div className="info-block images">
+          <a href="http://elca.org" target="_blank" rel="noopener noreferrer">
+            <StaticImage
+              src="../images/ELCA_Logo.png"
+              alt="ELCA Logo"
+              placeholder="blurred"
+            />
+          </a>
+          <a
+            href="http://stevenministry.org"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <StaticImage
+              src="../images/Stephen_Ministry_Logo_Blue.png"
+              alt="Stepen Ministry Logo"
+              placeholder="blurred"
+            />
+          </a>
+        </div>
+        <div className="info-block">
+          <h2>{frontmatter.newsHeadline}</h2>
+          <ReactMarkdown children={frontmatter.newsBody} />
         </div>
       </div>
-    </>
-  )
-}
+      <div className="info-block">
+        <h2>Worship Times</h2>
+        <table className="table-striped">
+          <tbody>
+            {frontmatter.worshipTimes.map(({ label, time }) => {
+              return (
+                <tr>
+                  <td>{label}</td>
+                  <td>{time}</td>
+                </tr>
+              )
+            })}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </>
+)
 
 export default HomeTemplate
 
@@ -84,27 +83,6 @@ export const pageQuery = graphql`
         worshipTimes {
           label
           time
-        }
-      }
-    }
-    graceWide: file(relativePath: { eq: "grace_wide.jpg" }) {
-      childImageSharp {
-        fluid(maxWidth: 1200) {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
-    elcaLogo: file(relativePath: { eq: "ELCA_Logo.png" }) {
-      childImageSharp {
-        fixed(height: 100) {
-          ...GatsbyImageSharpFixed
-        }
-      }
-    }
-    smLogo: file(relativePath: { eq: "Stephen_Ministry_Logo_Blue.png" }) {
-      childImageSharp {
-        fixed(height: 100) {
-          ...GatsbyImageSharpFixed
         }
       }
     }

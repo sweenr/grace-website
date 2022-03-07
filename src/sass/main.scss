@@ -16,6 +16,9 @@ a {
 #root {
   margin-left: auto;
   margin-right: auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 @media (min-width: 768px) {
@@ -38,6 +41,7 @@ a {
 
 .content {
   margin-top: 0;
+  flex-grow: 1;
 }
 
 @media screen and (max-width: 768px) {
