@@ -1,4 +1,6 @@
-import React from "react";
+import React from "react"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faFacebook, faYoutube } from "@fortawesome/free-brands-svg-icons"
 
 function Footer() {
   return (
@@ -11,18 +13,25 @@ function Footer() {
           <a href="tel:1-228-864-4248">228.864.4248</a>
         </small>
         <a
-          href="http://facebook.com/glclbms"
+          href="https://facebook.com/glclbms"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Facebook
+          <FontAwesomeIcon icon={faFacebook} />
+        </a>
+        <a
+          href="https://www.youtube.com/channel/UC_pWyTkUdZ6P6MikKKM4nwA"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <FontAwesomeIcon icon={faYoutube} />
         </a>
       </div>
       <div>
-        <small>&copy; Grace Lutheran Church {new Date().getFullYear()}</small>
+        <small>&copy; {new Date().getFullYear()} Grace Lutheran Church</small>
       </div>
     </footer>
-  );
+  )
 }
 
-export default Footer;
+export default Footer

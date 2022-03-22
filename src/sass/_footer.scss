@@ -8,10 +8,15 @@ footer {
   a {
     color: $body-color;
   }
-  .contact small {
-    &::after {
-      content: "|";
-      padding: 0 5px;
+  .contact {
+    small {
+      &::after {
+        content: "|";
+        padding: 0 5px;
+      }
+    }
+    & > a {
+      padding: 0 10px;
     }
   }
 }
