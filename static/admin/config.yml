@@ -25,7 +25,12 @@ collections:
         }
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Publish Date", name: "date", widget: "datetime" }
-      - { label: "YouTube URL", name: "videoUrl", widget: "string" }
+      - {
+          label: "YouTube URL",
+          hint: "Sermon link URL, should look like 'https://youtu.be/somestringid?t=1234'",
+          name: "videoUrl",
+          widget: "string",
+        }
       - { label: "Body", name: "body", widget: "markdown" }
   - name: "pages"
     label: "Pages"

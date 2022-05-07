@@ -2,9 +2,26 @@ import React from "react"
 import { graphql } from "gatsby"
 import { Helmet } from "react-helmet"
 
-function SermonTemplate({ data }) {
-  const { markdownRemark } = data // data.markdownRemark holds your post data
-  const { frontmatter, html } = markdownRemark
+const SermonTemplate = ({
+  data: {
+    markdownRemark: { frontmatter, html },
+  },
+}) => {
+  let videoId = ""
+  let timestamp = ""
+  if (frontmatter.videoUrl) {
+    const stripped = frontmatter.videoUrl.substring(
+      frontmatter.videoUrl.lastIndexOf("/") + 1
+    )
+    if (stripped.indexOf("?") !== -1 && stripped.indexOf("=") !== -1) {
+      videoId = stripped.substring(0, stripped.indexOf("?"))
+      timestamp = stripped.substring(stripped.indexOf("=") + 1)
+    } else {
+      console.warn(
+        `Video URL for '${frontmatter.title}' is missing or malformed`
+      )
+    }
+  }
   return (
     <>
       <Helmet>
@@ -15,7 +32,30 @@ function SermonTemplate({ data }) {
           <h1>{frontmatter.title}</h1>
           <small>{frontmatter.date}</small>
         </header>
-        <section dangerouslySetInnerHTML={{ __html: html }} />
+        {videoId && timestamp ? (
+          <section className="video">
+            <iframe
+              width="560"
+              height="315"
+              src={`https://www.youtube.com/embed/${videoId}?t=${timestamp}`}
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+            <br />
+            <a
+              href={`https://youtu.be/${videoId}`}
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              Watch full service on YouTube
+            </a>
+          </section>
+        ) : (
+          <p style={{ display: "none" }}>Video link missing or malformed</p>
+        )}
+        <section className="notes" dangerouslySetInnerHTML={{ __html: html }} />
       </article>
     </>
   )
@@ -24,13 +64,14 @@ function SermonTemplate({ data }) {
 export default SermonTemplate
 
 export const pageQuery = graphql`
-  query($slug: String!) {
+  query ($slug: String!) {
     markdownRemark(fields: { slug: { eq: $slug } }) {
       html
       frontmatter {
         path
         title
         date(formatString: "MMMM DD, YYYY")
+        videoUrl
       }
     }
   }
