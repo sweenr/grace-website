@@ -43,14 +43,6 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
           slug: node.fields.slug,
         }, // additional data can be passed via context
       })
-    } else {
-      createPage({
-        path: node.frontmatter.path,
-        component: path.resolve(
-          `src/templates/${node.frontmatter.templatePath}`
-        ),
-        context: {}, // additional data can be passed via context
-      })
     }
   })
 }

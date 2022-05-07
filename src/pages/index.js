@@ -4,7 +4,7 @@ import ReactMarkdown from "react-markdown"
 import { Helmet } from "react-helmet"
 import { StaticImage } from "gatsby-plugin-image"
 
-const HomeTemplate = ({
+const Home = ({
   data: {
     markdownRemark: { frontmatter },
   },
@@ -33,7 +33,7 @@ const HomeTemplate = ({
               placeholder="blurred"
             />
           </a>
-          <a
+          {/* <a
             href="http://stevenministry.org"
             target="_blank"
             rel="noopener noreferrer"
@@ -43,7 +43,7 @@ const HomeTemplate = ({
               alt="Stepen Ministry Logo"
               placeholder="blurred"
             />
-          </a>
+          </a> */}
         </div>
         <div className="info-block">
           <h2>{frontmatter.newsHeadline}</h2>
@@ -69,11 +69,11 @@ const HomeTemplate = ({
   </>
 )
 
-export default HomeTemplate
+export default Home
 
 export const pageQuery = graphql`
-  query($path: String!) {
-    markdownRemark(frontmatter: { path: { eq: $path } }) {
+  query HomeQuery {
+    markdownRemark(frontmatter: { path: { eq: "/" } }) {
       frontmatter {
         path
         title

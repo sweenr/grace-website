@@ -4,7 +4,7 @@ import { StaticImage } from "gatsby-plugin-image"
 import ReactMarkdown from "react-markdown"
 import { Helmet } from "react-helmet"
 
-const AboutTemplate = ({
+const About = ({
   data: {
     markdownRemark: { frontmatter },
   },
@@ -66,11 +66,11 @@ const AboutTemplate = ({
   </>
 )
 
-export default AboutTemplate
+export default About
 
 export const pageQuery = graphql`
-  query($path: String!) {
-    markdownRemark(frontmatter: { path: { eq: $path } }) {
+  query AboutQuery {
+    markdownRemark(frontmatter: { path: { eq: "/about" } }) {
       frontmatter {
         path
         title
