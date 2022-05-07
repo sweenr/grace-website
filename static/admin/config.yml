@@ -38,6 +38,28 @@ collections:
           widget: "string",
         }
       - { label: "Body", name: "body", widget: "markdown" }
+  - name: "photos"
+    label: "Photos"
+    folder: "content/photos"
+    create: true
+    slug: "{{year}}{{month}}{{day}}-{{slug}}"
+    editor:
+      preview: false
+    fields:
+      # - {
+      #     label: "Template Path",
+      #     name: templatePath,
+      #     widget: hidden,
+      #     default: "sermon-template.js",
+      #   }
+      - { - label: "Image", name: "image", widget: "image", choose_url: false }
+      - {
+          label: "Alt Text",
+          hint: "Should describe image, for visually impaired people",
+          name: "alt",
+          widget: "string",
+        }
+      - { label: "Description", name: "body", widget: "markdown" }
   - name: "pages"
     label: "Pages"
     files:
@@ -82,7 +104,12 @@ collections:
         label: "Newsletter"
         name: "newsletter"
         fields:
-          - { label: "Newsletter", name: "newsletter", widget: file }
+          - {
+              label: "Newsletter",
+              name: "newsletter",
+              widget: file,
+              choose_url: false,
+            }
       - file: "src/markdown-pages/contact.md"
         label: "Contact"
         name: "contact"
@@ -97,13 +124,7 @@ collections:
         fields:
           - { label: "Body", name: "body", widget: "markdown" }
       - file: "src/markdown-pages/life.md"
-        label: "Live at Grace"
+        label: "Life at Grace"
         name: "life"
         fields:
-          - {
-              label: "Image",
-              name: "image",
-              widget: "image",
-              choose_url: false,
-            }
           - { label: "Description", name: "body", widget: "markdown" }
