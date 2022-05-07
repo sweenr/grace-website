@@ -1,5 +1,5 @@
 ---
-newsletter: /uploads/april-nl-2022.pdf
+newsletter: /uploads/may-nl-2022.pdf
 templatePath: newsletter-template.js
 path: /newsletter
 title: Newsletter
