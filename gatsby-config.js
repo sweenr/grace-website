@@ -1,3 +1,5 @@
+require("dotenv").config()
+
 module.exports = {
   siteMetadata: {
     title: `Grace Lutheran Church`,
@@ -25,6 +27,16 @@ module.exports = {
       options: {
         name: `sermons`,
         path: `${__dirname}/content/sermons`,
+      },
+    },
+    {
+      resolve: `gatsby-source-cloudinary`,
+      options: {
+        cloudName: process.env.CLOUDINARY_CLOUD_NAME,
+        apiKey: process.env.CLOUDINARY_API_KEY,
+        apiSecret: process.env.CLOUDINARY_API_SECRET,
+        resourceType: `image`,
+        prefix: `life-at-grace/`,
       },
     },
     `gatsby-plugin-image`,

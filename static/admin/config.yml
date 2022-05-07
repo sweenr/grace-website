@@ -39,7 +39,7 @@ collections:
         }
       - { label: "Body", name: "body", widget: "markdown" }
   - name: "photos"
-    label: "Photos"
+    label: "Photos (Life at Grace)"
     folder: "content/photos"
     create: true
     slug: "{{year}}{{month}}{{day}}-{{slug}}"
@@ -52,7 +52,14 @@ collections:
       #     widget: hidden,
       #     default: "sermon-template.js",
       #   }
-      - { - label: "Image", name: "image", widget: "image", choose_url: false }
+      - {
+          - label: "Image",
+          name: "image",
+          widget: "image",
+          choose_url: false,
+          media_library: {},
+          hint: "Store images in the 'life-at-grace' folder in Cloudinary",
+        }
       - {
           label: "Alt Text",
           hint: "Should describe image, for visually impaired people",
