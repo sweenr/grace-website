@@ -4,7 +4,7 @@ import { StaticImage } from "gatsby-plugin-image"
 import ReactMarkdown from "react-markdown"
 import { Helmet } from "react-helmet"
 
-const StephenMinistryTemplate = ({
+const StephenMinistry = ({
   data: {
     markdownRemark: { frontmatter },
   },
@@ -38,11 +38,11 @@ const StephenMinistryTemplate = ({
   </>
 )
 
-export default StephenMinistryTemplate
+export default StephenMinistry
 
 export const pageQuery = graphql`
-  query($path: String!) {
-    markdownRemark(frontmatter: { path: { eq: $path } }) {
+  query StephenMinistryQuery {
+    markdownRemark(frontmatter: { path: { eq: "/stephenministry" } }) {
       frontmatter {
         path
         title
