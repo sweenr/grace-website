@@ -30,6 +30,13 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `photos`,
+        path: `${__dirname}/content/photos`,
+      },
+    },
+    {
       resolve: `gatsby-source-cloudinary`,
       options: {
         cloudName: process.env.CLOUDINARY_CLOUD_NAME,
