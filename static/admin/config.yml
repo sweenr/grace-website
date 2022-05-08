@@ -129,7 +129,14 @@ collections:
         label: "Outreach"
         name: "outreach"
         fields:
-          - { label: "Body", name: "body", widget: "markdown" }
+          - { label: "Heading", name: "body", widget: "markdown" }
+          - label: "Ministries"
+            name: "ministries"
+            widget: "list"
+            summary: "{{fields.quote}} - {{fields.author.name}}"
+            fields:
+              - { label: Summary, name: summary, widget: markdown }
+              - { label: Image, name: image, widget: image, required: false }
       - file: "src/markdown-pages/life.md"
         label: "Life at Grace"
         name: "life"
