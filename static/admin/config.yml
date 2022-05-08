@@ -74,6 +74,12 @@ collections:
         label: "Home"
         name: "index"
         fields:
+        - {
+              label: "Path",
+              name: "path",
+              widget: "hidden",
+              default: "/",
+            }
           - { label: "About Text", name: "about", widget: markdown }
           - { label: "News Headline", name: "newsHeadline", widget: string }
           - { label: "News Body", name: "newsBody", widget: markdown }
@@ -91,6 +97,12 @@ collections:
         label: "About"
         name: "about"
         fields:
+        - {
+              label: "Path",
+              name: "path",
+              widget: "hidden",
+              default: "/about",
+            }
           - { label: "About Title", name: "aboutTitle", widget: string }
           - { label: "About Text", name: "about", widget: markdown }
           - { label: "Mission Title", name: "missionTitle", widget: string }
@@ -111,6 +123,12 @@ collections:
         label: "Newsletter"
         name: "newsletter"
         fields:
+        - {
+              label: "Path",
+              name: "path",
+              widget: "hidden",
+              default: "/newsletter",
+            }
           - {
               label: "Newsletter",
               name: "newsletter",
@@ -121,6 +139,12 @@ collections:
         label: "Contact"
         name: "contact"
         fields:
+        - {
+              label: "Path",
+              name: "path",
+              widget: "hidden",
+              default: "/contact",
+            }
           - { label: "Office Phone", name: "officePhone", widget: string }
           - { label: "Office Email", name: "officeEmail", widget: string }
           - { label: "Office Hours", name: "officeHours", widget: markdown }
@@ -129,6 +153,12 @@ collections:
         label: "Outreach"
         name: "outreach"
         fields:
+          - {
+              label: "Path",
+              name: "path",
+              widget: "hidden",
+              default: "/outreach",
+            }
           - { label: "Heading", name: "body", widget: "markdown" }
           - label: "Ministries"
             name: "ministries"
@@ -141,4 +171,10 @@ collections:
         label: "Life at Grace"
         name: "life"
         fields:
+        - {
+              label: "Path",
+              name: "path",
+              widget: "hidden",
+              default: "/life",
+            }
           - { label: "Description", name: "body", widget: "markdown" }
