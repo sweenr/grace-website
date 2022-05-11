@@ -16,7 +16,7 @@ newsBody: Grace Lutheran Church is holding hybrid worship services with both
   invitation list, contact Pastor Dave at
   [gracepastordave1@gmail.com](mailto:gracepastordave1@gmail.com).
 worshipTimes:
-  - label: Sunday School (All Ages)
+  - label: "Sunday School "
     time: 9:00  AM
   - label: Sunday Worship
     time: 10:00 AM
