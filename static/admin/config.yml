@@ -74,12 +74,7 @@ collections:
         label: "Home"
         name: "index"
         fields:
-          - {
-              label: "Path",
-              name: "path",
-              widget: "hidden",
-              default: "/",
-            }
+          - { label: "Path", name: "path", widget: "hidden", default: "/" }
           - { label: "About Text", name: "about", widget: markdown }
           - { label: "News Headline", name: "newsHeadline", widget: string }
           - { label: "News Body", name: "newsBody", widget: markdown }
@@ -97,12 +92,7 @@ collections:
         label: "About"
         name: "about"
         fields:
-          - {
-              label: "Path",
-              name: "path",
-              widget: "hidden",
-              default: "/about",
-            }
+          - { label: "Path", name: "path", widget: "hidden", default: "/about" }
           - { label: "About Title", name: "aboutTitle", widget: string }
           - { label: "About Text", name: "about", widget: markdown }
           - { label: "Mission Title", name: "missionTitle", widget: string }
@@ -165,17 +155,12 @@ collections:
             widget: "list"
             summary: "{{fields.title}}"
             fields:
-              - { label: Title, name: title, widget: string}
+              - { label: Title, name: title, widget: string }
               - { label: Summary, name: summary, widget: markdown }
               - { label: Image, name: image, widget: image, required: false }
       - file: "src/markdown-pages/life.md"
         label: "Life at Grace"
         name: "life"
         fields:
-        - {
-              label: "Path",
-              name: "path",
-              widget: "hidden",
-              default: "/life",
-            }
+          - { label: "Path", name: "path", widget: "hidden", default: "/life" }
           - { label: "Description", name: "body", widget: "markdown" }
