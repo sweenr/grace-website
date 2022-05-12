@@ -5,9 +5,9 @@ title: Home
 date: 2020-04-12T00:00:00.000Z
 about: Grace Lutheran Church, located in Long Beach, MS, is a congregation of
   the Southeastern Synod of the [Evangelical Lutheran Church in
-  America](http://elca.org/). We invite you to learn more
-  about our congregation, and to join us for worship on Sunday morning. [Find
-  out more](/about/) about the congregation, and feel free to [get in
+  America](http://elca.org/). We invite you to learn more about our
+  congregation, and to join us for worship on Sunday morning. [Find out
+  more](/about/) about the congregation, and feel free to [get in
   touch](/contact/) or join us on Sunday morning!
 newsHeadline: Remote Worship Services
 newsBody: Grace Lutheran Church is holding hybrid worship services with both
@@ -16,8 +16,8 @@ newsBody: Grace Lutheran Church is holding hybrid worship services with both
   invitation list, contact Pastor Dave at
   [gracepastordave1@gmail.com](mailto:gracepastordave1@gmail.com).
 worshipTimes:
-  - label: Sunday School (All Ages)
-    time: 8:45 AM
+  - label: "Sunday School "
+    time: 9:00  AM
   - label: Sunday Worship
     time: 10:00 AM
   - label: Wednesday Holy Communion
