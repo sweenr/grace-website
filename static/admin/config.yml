@@ -8,6 +8,12 @@ display_url: https://gracelongbeach.com
 media_folder: static/uploads
 public_folder: /uploads
 
+media_library:
+  name: cloudinary
+  config:
+    cloud_name: grace-long-beach
+    api_key: 652421675614248
+
 collections:
   - name: "sermons"
     label: "Sermons"
@@ -32,6 +38,35 @@ collections:
           widget: "string",
         }
       - { label: "Body", name: "body", widget: "markdown", required: false }
+  - name: "photos"
+    label: "Photos (Life at Grace)"
+    folder: "content/photos"
+    create: true
+    slug: "{{year}}{{month}}{{day}}-{{slug}}"
+    editor:
+      preview: false
+    fields:
+      # - {
+      #     label: "Template Path",
+      #     name: templatePath,
+      #     widget: hidden,
+      #     default: "sermon-template.js",
+      #   }
+      - {
+          - label: "Image",
+          name: "image",
+          widget: "image",
+          choose_url: false,
+          media_library: {},
+          hint: "Store images in the 'life-at-grace' folder in Cloudinary",
+        }
+      - {
+          label: "Alt Text",
+          hint: "Should describe image, for visually impaired people",
+          name: "alt",
+          widget: "string",
+        }
+      - { label: "Description", name: "body", widget: "markdown" }
   - name: "pages"
     label: "Pages"
     files:
@@ -39,12 +74,7 @@ collections:
         label: "Home"
         name: "index"
         fields:
-          - {
-              label: "Template Key",
-              name: "templateKey",
-              widget: "hidden",
-              default: "index-page",
-            }
+          - { label: "Path", name: "path", widget: "hidden", default: "/" }
           - { label: "About Text", name: "about", widget: markdown }
           - { label: "News Headline", name: "newsHeadline", widget: string }
           - { label: "News Body", name: "newsBody", widget: markdown }
@@ -62,12 +92,7 @@ collections:
         label: "About"
         name: "about"
         fields:
-          - {
-              label: "Template Key",
-              name: "templateKey",
-              widget: "hidden",
-              default: "about-page",
-            }
+          - { label: "Path", name: "path", widget: "hidden", default: "/about" }
           - { label: "About Title", name: "aboutTitle", widget: string }
           - { label: "About Text", name: "about", widget: markdown }
           - { label: "Mission Title", name: "missionTitle", widget: string }
@@ -80,12 +105,6 @@ collections:
         label: "Stephen Ministry (Archived)"
         name: "stephenministry"
         fields:
-          - {
-              label: "Template Key",
-              name: "templateKey",
-              widget: "hidden",
-              default: "index-page",
-            }
           - { label: "About Title", name: "aboutTitle", widget: string }
           - { label: "About Text", name: "about", widget: markdown }
           - { label: "Contact Title", name: "contactTitle", widget: string }
@@ -95,23 +114,53 @@ collections:
         name: "newsletter"
         fields:
           - {
-              label: "Template Key",
-              name: "templateKey",
+              label: "Path",
+              name: "path",
               widget: "hidden",
-              default: "newsletter-page",
+              default: "/newsletter",
             }
-          - { label: "Newsletter", name: "newsletter", widget: file }
+          - {
+              label: "Newsletter",
+              name: "newsletter",
+              widget: file,
+              choose_url: false,
+            }
       - file: "src/markdown-pages/contact.md"
         label: "Contact"
         name: "contact"
         fields:
           - {
-              label: "Template Key",
-              name: "templateKey",
+              label: "Path",
+              name: "path",
               widget: "hidden",
-              default: "contact-page",
+              default: "/contact",
             }
           - { label: "Office Phone", name: "officePhone", widget: string }
           - { label: "Office Email", name: "officeEmail", widget: string }
           - { label: "Office Hours", name: "officeHours", widget: markdown }
           - { label: "Pastor's Hours", name: "pastorHours", widget: markdown }
+      - file: "src/markdown-pages/outreach.md"
+        label: "Outreach"
+        name: "outreach"
+        fields:
+          - {
+              label: "Path",
+              name: "path",
+              widget: "hidden",
+              default: "/outreach",
+            }
+          - { label: "Heading", name: "body", widget: "markdown" }
+          - label: "Ministries"
+            name: "ministries"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Summary, name: summary, widget: markdown }
+              - { label: Image, name: image, widget: image, required: false }
+      - file: "src/markdown-pages/life.md"
+        label: "Life at Grace"
+        name: "life"
+        fields:
+          - { label: "Path", name: "path", widget: "hidden", default: "/life" }
+          - { label: "Description", name: "body", widget: "markdown" }

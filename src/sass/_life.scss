@@ -1,0 +1,22 @@
+.life-content {
+  .heading {
+    margin-bottom: 2rem;
+  }
+  .photos-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: masonry;
+    .photo {
+      margin: 5px;
+    }
+  }
+}
+
+.outreach-content {
+  .heading {
+    margin-bottom: 2rem;
+  }
+  .ministry {
+    margin-bottom: 2rem;
+  }
+}
