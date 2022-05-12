@@ -74,7 +74,7 @@ collections:
         label: "Home"
         name: "index"
         fields:
-        - {
+          - {
               label: "Path",
               name: "path",
               widget: "hidden",
@@ -97,7 +97,7 @@ collections:
         label: "About"
         name: "about"
         fields:
-        - {
+          - {
               label: "Path",
               name: "path",
               widget: "hidden",
@@ -123,7 +123,7 @@ collections:
         label: "Newsletter"
         name: "newsletter"
         fields:
-        - {
+          - {
               label: "Path",
               name: "path",
               widget: "hidden",
@@ -139,7 +139,7 @@ collections:
         label: "Contact"
         name: "contact"
         fields:
-        - {
+          - {
               label: "Path",
               name: "path",
               widget: "hidden",
@@ -163,8 +163,9 @@ collections:
           - label: "Ministries"
             name: "ministries"
             widget: "list"
-            summary: "{{fields.quote}} - {{fields.author.name}}"
+            summary: "{{fields.title}}"
             fields:
+              - { label: Title, name: title, widget: string}
               - { label: Summary, name: summary, widget: markdown }
               - { label: Image, name: image, widget: image, required: false }
       - file: "src/markdown-pages/life.md"
