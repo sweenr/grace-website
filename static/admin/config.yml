@@ -53,11 +53,10 @@ collections:
       #     default: "sermon-template.js",
       #   }
       - {
-          - label: "Image",
+          label: "Image",
           name: "image",
           widget: "image",
           choose_url: false,
-          media_library: {},
           hint: "Store images in the 'life-at-grace' folder in Cloudinary",
         }
       - {
