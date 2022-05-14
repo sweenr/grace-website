@@ -6,21 +6,25 @@
 
 const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
+const { paginate } = require(`gatsby-awesome-pagination`)
 
 exports.createPages = async ({ actions, graphql, reporter }) => {
   const { createPage } = actions
   const result = await graphql(`
-    {
-      allMarkdownRemark(limit: 1000) {
+    query {
+      allMarkdownRemark(
+        sort: { fields: [frontmatter___date], order: DESC }
+        filter: { frontmatter: { templatePath: { eq: "sermon-template.js" } } }
+      ) {
         edges {
           node {
+            excerpt
             fields {
               slug
             }
             frontmatter {
-              path
+              date(formatString: "MMMM DD, YYYY")
               title
-              templatePath
             }
           }
         }
@@ -32,18 +36,23 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     reporter.panicOnBuild(`Error while running GraphQL query.`)
     return
   }
+
+  paginate({
+    createPage, // The Gatsby `createPage` function
+    items: result.data.allMarkdownRemark.edges, // An array of objects
+    itemsPerPage: 10, // How many items you want per page
+    pathPrefix: "/sermons", // Creates pages like `/blog`, `/blog/2`, etc
+    component: path.resolve(`src/templates/sermons-template.js`), // Just like `createPage()`
+  })
+
   result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-    if (node.frontmatter.templatePath === "sermon-template.js") {
-      createPage({
-        path: `/sermons${node.fields.slug}`,
-        component: path.resolve(
-          `src/templates/${node.frontmatter.templatePath}`
-        ),
-        context: {
-          slug: node.fields.slug,
-        }, // additional data can be passed via context
-      })
-    }
+    createPage({
+      path: `/sermons${node.fields.slug}`,
+      component: path.resolve(`src/templates/sermon-template.js`),
+      context: {
+        slug: node.fields.slug,
+      },
+    })
   })
 }
 
