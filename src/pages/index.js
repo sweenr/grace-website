@@ -1,12 +1,12 @@
 import React from "react"
 import { graphql } from "gatsby"
-import ReactMarkdown from "react-markdown"
 import { Helmet } from "react-helmet"
 import { StaticImage } from "gatsby-plugin-image"
+import { PortableText } from "@portabletext/react"
 
 const Home = ({
   data: {
-    markdownRemark: { frontmatter },
+    allSanityHome: { edges },
   },
 }) => (
   <>
@@ -23,7 +23,7 @@ const Home = ({
       <div className="home-info">
         <div className="info-block">
           <h2>About Grace Lutheran Church</h2>
-          <ReactMarkdown children={frontmatter.about} />
+          <PortableText value={edges[0].node._rawAbout} />
         </div>
         <div className="info-block images">
           <a href="http://elca.org" target="_blank" rel="noopener noreferrer">
@@ -46,15 +46,15 @@ const Home = ({
           </a> */}
         </div>
         <div className="info-block">
-          <h2>{frontmatter.newsHeadline}</h2>
-          <ReactMarkdown children={frontmatter.newsBody} />
+          <h2>{edges[0].node.newsHeadline}</h2>
+          <PortableText value={edges[0].node._rawNewsBody} />
         </div>
       </div>
       <div className="info-block">
         <h2>Worship Times</h2>
         <table className="table-striped">
           <tbody>
-            {frontmatter.worshipTimes.map(({ label, time }) => {
+            {edges[0].node.worshipTimes.map(({ label, time }) => {
               return (
                 <tr>
                   <td>{label}</td>
@@ -73,16 +73,16 @@ export default Home
 
 export const pageQuery = graphql`
   query HomeQuery {
-    markdownRemark(frontmatter: { path: { eq: "/" } }) {
-      frontmatter {
-        path
-        title
-        about
-        newsHeadline
-        newsBody
-        worshipTimes {
-          label
-          time
+    allSanityHome {
+      edges {
+        node {
+          _rawNewsBody
+          worshipTimes {
+            time
+            label
+          }
+          newsHeadline
+          _rawAbout
         }
       }
     }

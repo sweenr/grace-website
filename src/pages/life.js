@@ -3,10 +3,11 @@ import { graphql } from "gatsby"
 import { Helmet } from "react-helmet"
 import { LifePhoto } from "../components/lifePhoto"
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
+import { PortableText } from "@portabletext/react"
 
 const LifeAtGrace = ({
   data: {
-    markdownRemark: { html },
+    allSanityLife: { edges },
     allMarkdownRemark: { edges: photos },
   },
 }) => (
@@ -15,7 +16,7 @@ const LifeAtGrace = ({
       <title>Life at Grace</title>
     </Helmet>
     <div className="content life-content">
-      <section className="heading" dangerouslySetInnerHTML={{ __html: html }} />
+      <PortableText value={edges[0].node._rawBody} />
       <ResponsiveMasonry
         columnsCountBreakPoints={{ 350: 1, 500: 2, 750: 3, 1000: 4 }}
       >
@@ -62,8 +63,12 @@ export default LifeAtGrace
 
 export const pageQuery = graphql`
   query LifeAtGraceQuery {
-    markdownRemark(frontmatter: { path: { eq: "/life" } }) {
-      html
+    allSanityLife {
+      edges {
+        node {
+          _rawBody
+        }
+      }
     }
     allMarkdownRemark(filter: { frontmatter: { image: { ne: null } } }) {
       edges {

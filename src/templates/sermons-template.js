@@ -4,7 +4,7 @@ import { graphql, Link } from "gatsby"
 
 const Sermons = ({
   data: {
-    allMarkdownRemark: { edges: sermons },
+    allSanitySermon: { edges: sermons },
   },
   pageContext: { previousPagePath, nextPagePath },
 }) => (
@@ -23,11 +23,10 @@ const Sermons = ({
         {sermons.map(({ node }) => {
           return (
             <article className="sermon-listing">
-              <a href={`/sermons${node.fields.slug}`}>
-                <h3>{node.frontmatter.title}</h3>
+              <a href={`/sermons/${node.slug.current}`}>
+                <h3>{node.name}</h3>
               </a>
-              <small>{node.frontmatter.date}</small>
-              <p>{node.excerpt}</p>
+              <small>{node.publishDate}</small>
             </article>
           )
         })}
@@ -46,26 +45,13 @@ export default Sermons
 
 export const pageQuery = graphql`
   query ($skip: Int!, $limit: Int!) {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-    allMarkdownRemark(
-      sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { templatePath: { eq: "sermon-template.js" } } }
-      skip: $skip
-      limit: $limit
-    ) {
+    allSanitySermon(sort: { publishDate: DESC }, skip: $skip, limit: $limit) {
       edges {
         node {
-          excerpt
-          fields {
-            slug
-          }
-          frontmatter {
-            date(formatString: "MMMM DD, YYYY")
-            title
+          publishDate(formatString: "MMMM DD, YYYY")
+          name
+          slug {
+            current
           }
         }
       }

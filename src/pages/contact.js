@@ -1,11 +1,11 @@
 import React from "react"
 import { graphql } from "gatsby"
 import { Helmet } from "react-helmet"
-import ReactMarkdown from "react-markdown"
+import { PortableText } from "@portabletext/react"
 
 const Contact = ({
   data: {
-    markdownRemark: { frontmatter },
+    allSanityContact: { edges },
   },
 }) => (
   <>
@@ -37,24 +37,24 @@ const Contact = ({
             <h3>Church Office</h3>
             <p>
               Phone:{" "}
-              <a href={`tel:1-${frontmatter.officePhone}`}>
-                {frontmatter.officePhone}
+              <a href={`tel:1-${edges[0].node.officePhone}`}>
+                {edges[0].node.officePhone}
               </a>
             </p>
             <p>
               Email:{" "}
-              <a href={`mailto:${frontmatter.officeEmail}`}>
-                {frontmatter.officeEmail}
+              <a href={`mailto:${edges[0].node.officeEmail}`}>
+                {edges[0].node.officeEmail}
               </a>
             </p>
           </div>
           <div>
             <h3>Office Hours</h3>
-            <ReactMarkdown children={frontmatter.officeHours} />
+            <PortableText value={edges[0].node._rawOfficeHours} />
           </div>
           <div>
             <h3>Pastor Dave Parr</h3>
-            <ReactMarkdown children={frontmatter.pastorHours} />
+            <PortableText value={edges[0].node._rawPastorHours} />
           </div>
         </div>
       </div>
@@ -66,12 +66,14 @@ export default Contact
 
 export const pageQuery = graphql`
   query ContactQuery {
-    markdownRemark(frontmatter: { path: { eq: "/contact" } }) {
-      frontmatter {
-        officeEmail
-        officeHours
-        officePhone
-        pastorHours
+    allSanityContact {
+      edges {
+        node {
+          _rawOfficeHours
+          _rawPastorHours
+          officeEmail
+          officePhone
+        }
       }
     }
   }

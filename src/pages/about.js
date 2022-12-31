@@ -1,12 +1,12 @@
 import React from "react"
 import { graphql } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
-import ReactMarkdown from "react-markdown"
 import { Helmet } from "react-helmet"
+import { PortableText } from "@portabletext/react"
 
 const About = ({
   data: {
-    markdownRemark: { frontmatter },
+    allSanityAbout: { edges },
   },
 }) => (
   <>
@@ -16,14 +16,14 @@ const About = ({
     <div className="content about-content flip-layout">
       <div className="info-block">
         <div>
-          <h2>{frontmatter.aboutTitle}</h2>
-          <ReactMarkdown children={frontmatter.about} />
+          <h2>{edges[0].node.aboutTitle}</h2>
+          <PortableText value={edges[0].node._rawAbout} />
         </div>
       </div>
       <div className="info-block">
         <div>
-          <h2>{frontmatter.missionTitle}</h2>
-          <ReactMarkdown children={frontmatter.mission} />
+          <h2>{edges[0].node.missionTitle}</h2>
+          <PortableText value={edges[0].node._rawMission} />
         </div>
         <StaticImage
           src="../images/luther_rose.png"
@@ -36,8 +36,8 @@ const About = ({
       </div>
       <div className="info-block">
         <div>
-          <h2>{frontmatter.messageTitle}</h2>
-          <ReactMarkdown children={frontmatter.message} />
+          <h2>{edges[0].node.messageTitle}</h2>
+          <PortableText value={edges[0].node._rawMessage} />
         </div>
         <StaticImage
           src="../images/pastordave.jpg"
@@ -50,8 +50,8 @@ const About = ({
       </div>
       <div className="info-block">
         <div>
-          <h2>{frontmatter.believeTitle}</h2>
-          <ReactMarkdown children={frontmatter.believe} />
+          <h2>{edges[0].node.believeTitle}</h2>
+          <PortableText value={edges[0].node._rawBelieve} />
         </div>
         <StaticImage
           src="../images/grace_front_cross_square.jpg"
@@ -70,18 +70,18 @@ export default About
 
 export const pageQuery = graphql`
   query AboutQuery {
-    markdownRemark(frontmatter: { path: { eq: "/about" } }) {
-      frontmatter {
-        path
-        title
-        aboutTitle
-        about
-        missionTitle
-        mission
-        messageTitle
-        message
-        believeTitle
-        believe
+    allSanityAbout {
+      edges {
+        node {
+          _rawAbout
+          _rawBelieve
+          _rawMessage
+          _rawMission
+          missionTitle
+          messageTitle
+          believeTitle
+          aboutTitle
+        }
       }
     }
   }

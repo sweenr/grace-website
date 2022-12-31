@@ -1,14 +1,11 @@
 import React from "react"
 import { graphql } from "gatsby"
 import { Helmet } from "react-helmet"
-import ReactMarkdown from "react-markdown"
+import { PortableText } from "@portabletext/react"
 
 const Outreach = ({
   data: {
-    markdownRemark: {
-      frontmatter: { ministries },
-      html,
-    },
+    allSanityOutreach: { edges },
   },
 }) => (
   <>
@@ -16,12 +13,14 @@ const Outreach = ({
       <title>Outreach</title>
     </Helmet>
     <div className="content outreach-content">
-      <div className="heading" dangerouslySetInnerHTML={{ __html: html }} />
-      {ministries.map(({ title, summary }) => {
+      <div className="heading">
+        <PortableText value={edges[0].node._rawBody} />
+      </div>
+      {edges[0].node.ministries.map(({ title, summary }) => {
         return (
           <section className="ministry">
             <h3>{title}</h3>
-            <ReactMarkdown children={summary} />
+            <p>{summary}</p>
           </section>
         )
       })}
@@ -33,14 +32,16 @@ export default Outreach
 
 export const pageQuery = graphql`
   query Outreach {
-    markdownRemark(frontmatter: { path: { eq: "/outreach" } }) {
-      frontmatter {
-        ministries {
-          title
-          summary
+    allSanityOutreach {
+      edges {
+        node {
+          _rawBody
+          ministries {
+            title
+            summary
+          }
         }
       }
-      html
     }
   }
 `
