@@ -12,19 +12,11 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   const { createPage } = actions
   const result = await graphql(`
     query {
-      allMarkdownRemark(
-        sort: { fields: [frontmatter___date], order: DESC }
-        filter: { frontmatter: { templatePath: { eq: "sermon-template.js" } } }
-      ) {
+      allSanitySermon(sort: { publishDate: DESC }) {
         edges {
           node {
-            excerpt
-            fields {
-              slug
-            }
-            frontmatter {
-              date(formatString: "MMMM DD, YYYY")
-              title
+            slug {
+              current
             }
           }
         }
@@ -39,18 +31,18 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
 
   paginate({
     createPage, // The Gatsby `createPage` function
-    items: result.data.allMarkdownRemark.edges, // An array of objects
+    items: result.data.allSanitySermon.edges, // An array of objects
     itemsPerPage: 10, // How many items you want per page
     pathPrefix: "/sermons", // Creates pages like `/blog`, `/blog/2`, etc
     component: path.resolve(`src/templates/sermons-template.js`), // Just like `createPage()`
   })
 
-  result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+  result.data.allSanitySermon.edges.forEach(({ node }) => {
     createPage({
-      path: `/sermons${node.fields.slug}`,
+      path: `/sermons/${node.slug.current}`,
       component: path.resolve(`src/templates/sermon-template.js`),
       context: {
-        slug: node.fields.slug,
+        slug: node.slug.current,
       },
     })
   })
