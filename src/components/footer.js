@@ -20,7 +20,7 @@ function Footer() {
           <FontAwesomeIcon icon={faFacebook} />
         </a>
         <a
-          href="https://www.youtube.com/channel/UC_pWyTkUdZ6P6MikKKM4nwA"
+          href="https://www.youtube.com/@gracelongbeachms"
           target="_blank"
           rel="noopener noreferrer"
         >

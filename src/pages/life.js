@@ -8,7 +8,6 @@ import { PortableText } from "@portabletext/react"
 const LifeAtGrace = ({
   data: {
     allSanityLife: { edges },
-    allMarkdownRemark: { edges: photos },
   },
 }) => (
   <>
@@ -21,37 +20,17 @@ const LifeAtGrace = ({
         columnsCountBreakPoints={{ 350: 1, 500: 2, 750: 3, 1000: 4 }}
       >
         <Masonry gutter="10px">
-          {photos.map((p) => {
-            return (
-              <LifePhoto
-                image={p.node.frontmatter.image}
-                alt={p.node.frontmatter.alt}
-              />
-            )
+          {edges[0].node.gallery.images.map((p) => {
+            return <LifePhoto image={p.asset.gatsbyImageData} alt={p.alt} />
           })}
-          {photos.map((p) => {
-            return (
-              <LifePhoto
-                image={p.node.frontmatter.image}
-                alt={p.node.frontmatter.alt}
-              />
-            )
+          {edges[0].node.gallery.images.map((p) => {
+            return <LifePhoto image={p.asset.gatsbyImageData} alt={p.alt} />
           })}
-          {photos.map((p) => {
-            return (
-              <LifePhoto
-                image={p.node.frontmatter.image}
-                alt={p.node.frontmatter.alt}
-              />
-            )
+          {edges[0].node.gallery.images.map((p) => {
+            return <LifePhoto image={p.asset.gatsbyImageData} alt={p.alt} />
           })}
-          {photos.map((p) => {
-            return (
-              <LifePhoto
-                image={p.node.frontmatter.image}
-                alt={p.node.frontmatter.alt}
-              />
-            )
+          {edges[0].node.gallery.images.map((p) => {
+            return <LifePhoto image={p.asset.gatsbyImageData} alt={p.alt} />
           })}
         </Masonry>
       </ResponsiveMasonry>
@@ -67,17 +46,14 @@ export const pageQuery = graphql`
       edges {
         node {
           _rawBody
-        }
-      }
-    }
-    allMarkdownRemark(filter: { frontmatter: { image: { ne: null } } }) {
-      edges {
-        node {
-          frontmatter {
-            alt
-            image
+          gallery {
+            images {
+              alt
+              asset {
+                gatsbyImageData
+              }
+            }
           }
-          html
         }
       }
     }
