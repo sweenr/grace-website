@@ -26,6 +26,11 @@ export default {
       title: 'Mission Text',
     },
     {
+      name: 'missionImage',
+      type: 'imageWithAlt',
+      title: 'Mission Image',
+    },
+    {
       name: 'messageTitle',
       type: 'string',
       title: 'Message Title',
@@ -37,6 +42,11 @@ export default {
       title: 'Message Text',
     },
     {
+      name: 'messageImage',
+      type: 'imageWithAlt',
+      title: 'Message Image',
+    },
+    {
       name: 'believeTitle',
       type: 'string',
       title: 'We Believe Title',
@@ -46,6 +56,11 @@ export default {
       type: 'array',
       of: [{type: 'block'}],
       title: 'We Believe Text',
+    },
+    {
+      name: 'believeImage',
+      type: 'imageWithAlt',
+      title: 'Believe Image',
     },
   ],
 }

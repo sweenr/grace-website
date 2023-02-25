@@ -1,6 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
-import { StaticImage } from "gatsby-plugin-image"
+import { GatsbyImage } from "gatsby-plugin-image"
 import { Helmet } from "react-helmet"
 import { PortableText } from "@portabletext/react"
 
@@ -25,13 +25,12 @@ const About = ({
           <h2>{edges[0].node.missionTitle}</h2>
           <PortableText value={edges[0].node._rawMission} />
         </div>
-        <StaticImage
-          src="../images/luther_rose.png"
-          alt="Grace Logo"
+        <GatsbyImage
+          image={edges[0].node.missionImage.asset.gatsbyImageData}
+          alt={edges[0].node.missionImage.alt}
+          objectFit="contain"
           className="img-circle img-responsive"
-          layout="fixed"
-          placeholder="blurred"
-          width={250}
+          style={{ width: "250px" }}
         />
       </div>
       <div className="info-block">
@@ -39,13 +38,12 @@ const About = ({
           <h2>{edges[0].node.messageTitle}</h2>
           <PortableText value={edges[0].node._rawMessage} />
         </div>
-        <StaticImage
-          src="../images/pastordave.jpg"
-          alt="Pastor Dave Parr"
+        <GatsbyImage
+          image={edges[0].node.messageImage.asset.gatsbyImageData}
+          alt={edges[0].node.messageImage.alt}
+          objectFit="contain"
           className="img-circle img-responsive"
-          layout="fixed"
-          placeholder="blurred"
-          width={250}
+          style={{ width: "250px" }}
         />
       </div>
       <div className="info-block">
@@ -53,13 +51,12 @@ const About = ({
           <h2>{edges[0].node.believeTitle}</h2>
           <PortableText value={edges[0].node._rawBelieve} />
         </div>
-        <StaticImage
-          src="../images/grace_front_cross_square.jpg"
-          alt="Grace Church Cross"
+        <GatsbyImage
+          image={edges[0].node.believeImage.asset.gatsbyImageData}
+          alt={edges[0].node.believeImage.alt}
+          objectFit="contain"
           className="img-circle img-responsive"
-          layout="fixed"
-          placeholder="blurred"
-          width={250}
+          style={{ width: "250px" }}
         />
       </div>
     </div>
@@ -81,6 +78,24 @@ export const pageQuery = graphql`
           messageTitle
           believeTitle
           aboutTitle
+          missionImage {
+            alt
+            asset {
+              gatsbyImageData(layout: FIXED, width: 250)
+            }
+          }
+          messageImage {
+            alt
+            asset {
+              gatsbyImageData(layout: FIXED, width: 250)
+            }
+          }
+          believeImage {
+            alt
+            asset {
+              gatsbyImageData(layout: FIXED, width: 250)
+            }
+          }
         }
       }
     }

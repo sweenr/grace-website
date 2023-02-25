@@ -1,7 +1,7 @@
 import React from "react"
 import { graphql } from "gatsby"
 import Layout from "../components/layout"
-import { StaticImage } from "gatsby-plugin-image"
+import { GatsbyImage } from "gatsby-plugin-image"
 import { PortableText } from "@portabletext/react"
 
 const Home = ({
@@ -10,11 +10,11 @@ const Home = ({
   },
 }) => (
   <>
-    <StaticImage
-      src="../images/grace_wide.jpg"
-      alt="Front of Grace Lutheran Church"
-      placeholder="blurred"
-      width={1170}
+    <GatsbyImage
+      image={edges[0].node.heroImage.asset.gatsbyImageData}
+      alt={edges[0].node.heroImage.alt}
+      objectFit="contain"
+      style={{ width: "1170px" }}
     />
     <div className="content home-content">
       <div className="home-info">
@@ -24,10 +24,9 @@ const Home = ({
         </div>
         <div className="info-block images">
           <a href="http://elca.org" target="_blank" rel="noopener noreferrer">
-            <StaticImage
-              src="../images/ELCA_Logo.png"
-              alt="ELCA Logo"
-              placeholder="blurred"
+            <GatsbyImage
+              image={edges[0].node.elcaLogo.asset.gatsbyImageData}
+              alt={edges[0].node.elcaLogo.alt}
             />
           </a>
           {/* <a
@@ -80,6 +79,18 @@ export const pageQuery = graphql`
           }
           newsHeadline
           _rawAbout
+          heroImage {
+            alt
+            asset {
+              gatsbyImageData
+            }
+          }
+          elcaLogo {
+            alt
+            asset {
+              gatsbyImageData
+            }
+          }
         }
       }
     }

@@ -4,10 +4,20 @@ export default {
   title: 'Home Page',
   fields: [
     {
+      name: 'heroImage',
+      type: 'imageWithAlt',
+      title: 'Hero Image',
+    },
+    {
       name: 'about',
       type: 'array',
       of: [{type: 'block'}],
       title: 'About Text',
+    },
+    {
+      name: 'elcaLogo',
+      type: 'imageWithAlt',
+      title: 'ELCA Logo',
     },
     {
       name: 'newsHeadline',
