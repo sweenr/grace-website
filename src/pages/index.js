@@ -1,6 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
-import { Helmet } from "react-helmet"
+import Layout from "../components/layout"
 import { StaticImage } from "gatsby-plugin-image"
 import { PortableText } from "@portabletext/react"
 
@@ -10,9 +10,6 @@ const Home = ({
   },
 }) => (
   <>
-    <Helmet>
-      <title>Home</title>
-    </Helmet>
     <StaticImage
       src="../images/grace_wide.jpg"
       alt="Front of Grace Lutheran Church"
@@ -88,3 +85,5 @@ export const pageQuery = graphql`
     }
   }
 `
+
+export const Head = () => <Layout />
