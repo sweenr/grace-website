@@ -1,36 +1,32 @@
 import React from "react"
 import { graphql } from "gatsby"
-import ReactMarkdown from "react-markdown"
-import { Helmet } from "react-helmet"
-import { StaticImage } from "gatsby-plugin-image"
+import Layout from "../components/layout"
+import { GatsbyImage } from "gatsby-plugin-image"
+import { PortableText } from "@portabletext/react"
 
 const Home = ({
   data: {
-    markdownRemark: { frontmatter },
+    allSanityHome: { edges },
   },
 }) => (
   <>
-    <Helmet>
-      <title>Home</title>
-    </Helmet>
-    <StaticImage
-      src="../images/grace_wide.jpg"
-      alt="Front of Grace Lutheran Church"
-      placeholder="blurred"
-      width={1170}
+    <GatsbyImage
+      image={edges[0].node.heroImage.asset.gatsbyImageData}
+      alt={edges[0].node.heroImage.alt}
+      objectFit="contain"
+      style={{ width: "1170px" }}
     />
     <div className="content home-content">
       <div className="home-info">
         <div className="info-block">
           <h2>About Grace Lutheran Church</h2>
-          <ReactMarkdown children={frontmatter.about} />
+          <PortableText value={edges[0].node._rawAbout} />
         </div>
         <div className="info-block images">
           <a href="http://elca.org" target="_blank" rel="noopener noreferrer">
-            <StaticImage
-              src="../images/ELCA_Logo.png"
-              alt="ELCA Logo"
-              placeholder="blurred"
+            <GatsbyImage
+              image={edges[0].node.elcaLogo.asset.gatsbyImageData}
+              alt={edges[0].node.elcaLogo.alt}
             />
           </a>
           {/* <a
@@ -46,15 +42,15 @@ const Home = ({
           </a> */}
         </div>
         <div className="info-block">
-          <h2>{frontmatter.newsHeadline}</h2>
-          <ReactMarkdown children={frontmatter.newsBody} />
+          <h2>{edges[0].node.newsHeadline}</h2>
+          <PortableText value={edges[0].node._rawNewsBody} />
         </div>
       </div>
       <div className="info-block">
         <h2>Worship Times</h2>
         <table className="table-striped">
           <tbody>
-            {frontmatter.worshipTimes.map(({ label, time }) => {
+            {edges[0].node.worshipTimes.map(({ label, time }) => {
               return (
                 <tr>
                   <td>{label}</td>
@@ -73,18 +69,32 @@ export default Home
 
 export const pageQuery = graphql`
   query HomeQuery {
-    markdownRemark(frontmatter: { path: { eq: "/" } }) {
-      frontmatter {
-        path
-        title
-        about
-        newsHeadline
-        newsBody
-        worshipTimes {
-          label
-          time
+    allSanityHome {
+      edges {
+        node {
+          _rawNewsBody
+          worshipTimes {
+            time
+            label
+          }
+          newsHeadline
+          _rawAbout
+          heroImage {
+            alt
+            asset {
+              gatsbyImageData
+            }
+          }
+          elcaLogo {
+            alt
+            asset {
+              gatsbyImageData
+            }
+          }
         }
       }
     }
   }
 `
+
+export const Head = () => <Layout />

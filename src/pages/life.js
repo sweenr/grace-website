@@ -1,78 +1,118 @@
-import React from "react"
+import React, { useRef, useState } from "react"
 import { graphql } from "gatsby"
+import { GatsbyImage } from "gatsby-plugin-image"
 import { Helmet } from "react-helmet"
 import { LifePhoto } from "../components/lifePhoto"
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
+import { PortableText } from "@portabletext/react"
 
 const LifeAtGrace = ({
   data: {
-    markdownRemark: { html },
-    allMarkdownRemark: { edges: photos },
+    allSanityLife: { edges },
   },
-}) => (
-  <>
-    <Helmet>
-      <title>Life at Grace</title>
-    </Helmet>
-    <div className="content life-content">
-      <section className="heading" dangerouslySetInnerHTML={{ __html: html }} />
-      <ResponsiveMasonry
-        columnsCountBreakPoints={{ 350: 1, 500: 2, 750: 3, 1000: 4 }}
-      >
-        <Masonry gutter="10px">
-          {photos.map((p) => {
-            return (
-              <LifePhoto
-                image={p.node.frontmatter.image}
-                alt={p.node.frontmatter.alt}
-              />
-            )
-          })}
-          {photos.map((p) => {
-            return (
-              <LifePhoto
-                image={p.node.frontmatter.image}
-                alt={p.node.frontmatter.alt}
-              />
-            )
-          })}
-          {photos.map((p) => {
-            return (
-              <LifePhoto
-                image={p.node.frontmatter.image}
-                alt={p.node.frontmatter.alt}
-              />
-            )
-          })}
-          {photos.map((p) => {
-            return (
-              <LifePhoto
-                image={p.node.frontmatter.image}
-                alt={p.node.frontmatter.alt}
-              />
-            )
-          })}
-        </Masonry>
-      </ResponsiveMasonry>
-    </div>
-  </>
-)
+}) => {
+  const dialogRef = useRef()
+  const [imageData, setImageData] = useState({})
+
+  const onclick = (image) => {
+    console.log("showing image...")
+    setImageData(image)
+    dialogRef.current.showModal()
+  }
+
+  return (
+    <>
+      <Helmet>
+        <title>Life at Grace</title>
+      </Helmet>
+      <div className="content life-content">
+        <PortableText value={edges[0].node._rawBody} />
+        <ResponsiveMasonry
+          columnsCountBreakPoints={{ 350: 1, 500: 2, 750: 3, 1000: 4 }}
+        >
+          <Masonry gutter="10px">
+            {edges[0].node.gallery.images.map((p) => {
+              return (
+                <LifePhoto
+                  image={p.asset.gatsbyImageData}
+                  alt={p.alt}
+                  onclick={() =>
+                    onclick({ image: p.asset.gatsbyImageData, alt: p.alt })
+                  }
+                />
+              )
+            })}
+            {edges[0].node.gallery.images.map((p) => {
+              return (
+                <LifePhoto
+                  image={p.asset.gatsbyImageData}
+                  alt={p.alt}
+                  onclick={() =>
+                    onclick({ image: p.asset.gatsbyImageData, alt: p.alt })
+                  }
+                />
+              )
+            })}
+            {edges[0].node.gallery.images.map((p) => {
+              return (
+                <LifePhoto
+                  image={p.asset.gatsbyImageData}
+                  alt={p.alt}
+                  onclick={() =>
+                    onclick({ image: p.asset.gatsbyImageData, alt: p.alt })
+                  }
+                />
+              )
+            })}
+            {edges[0].node.gallery.images.map((p) => {
+              return (
+                <LifePhoto
+                  image={p.asset.gatsbyImageData}
+                  alt={p.alt}
+                  onclick={() =>
+                    onclick({ image: p.asset.gatsbyImageData, alt: p.alt })
+                  }
+                />
+              )
+            })}
+          </Masonry>
+        </ResponsiveMasonry>
+        <dialog id="imageDialog" ref={dialogRef}>
+          <div className="dialogPhoto">
+            <GatsbyImage
+              image={imageData.image}
+              alt={imageData.alt}
+              className="image"
+              objectFit="contain"
+              style={{maxHeight: "75vh"}}
+            />
+            <div className="desc">{imageData.alt}</div>
+            <button id="close" onClick={() => dialogRef.current.close()}>
+              X
+            </button>
+          </div>
+        </dialog>
+      </div>
+    </>
+  )
+}
 
 export default LifeAtGrace
 
 export const pageQuery = graphql`
   query LifeAtGraceQuery {
-    markdownRemark(frontmatter: { path: { eq: "/life" } }) {
-      html
-    }
-    allMarkdownRemark(filter: { frontmatter: { image: { ne: null } } }) {
+    allSanityLife {
       edges {
         node {
-          frontmatter {
-            alt
-            image
+          _rawBody
+          gallery {
+            images {
+              alt
+              asset {
+                gatsbyImageData(layout: CONSTRAINED, fit: CLIP, width: 1000)
+              }
+            }
           }
-          html
         }
       }
     }

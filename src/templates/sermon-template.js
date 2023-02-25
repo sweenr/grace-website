@@ -1,36 +1,33 @@
 import React from "react"
 import { graphql } from "gatsby"
 import { Helmet } from "react-helmet"
+import { PortableText } from "@portabletext/react"
 
 const SermonTemplate = ({
   data: {
-    markdownRemark: { frontmatter, html },
+    sanitySermon: { name, publishDate, videoUrl, _rawBody },
   },
 }) => {
   let videoId = ""
   let timestamp = ""
-  if (frontmatter.videoUrl) {
-    const stripped = frontmatter.videoUrl.substring(
-      frontmatter.videoUrl.lastIndexOf("/") + 1
-    )
+  if (videoUrl) {
+    const stripped = videoUrl.substring(videoUrl.lastIndexOf("/") + 1)
     if (stripped.indexOf("?") !== -1 && stripped.indexOf("=") !== -1) {
       videoId = stripped.substring(0, stripped.indexOf("?"))
       timestamp = stripped.substring(stripped.indexOf("=") + 1)
     } else {
-      console.warn(
-        `Video URL for '${frontmatter.title}' is missing or malformed`
-      )
+      console.warn(`Video URL for '${name}' is missing or malformed`)
     }
   }
   return (
     <>
       <Helmet>
-        <title>{frontmatter.title}</title>
+        <title>{name}</title>
       </Helmet>
       <article>
         <header>
-          <h1>{frontmatter.title}</h1>
-          <small>{frontmatter.date}</small>
+          <h1>{name}</h1>
+          <small>{publishDate}</small>
         </header>
         {videoId && timestamp ? (
           <section className="video">
@@ -55,7 +52,7 @@ const SermonTemplate = ({
         ) : (
           <p style={{ display: "none" }}>Video link missing or malformed</p>
         )}
-        <section className="notes" dangerouslySetInnerHTML={{ __html: html }} />
+        <PortableText value={_rawBody} />
       </article>
     </>
   )
@@ -65,14 +62,11 @@ export default SermonTemplate
 
 export const pageQuery = graphql`
   query ($slug: String!) {
-    markdownRemark(fields: { slug: { eq: $slug } }) {
-      html
-      frontmatter {
-        path
-        title
-        date(formatString: "MMMM DD, YYYY")
-        videoUrl
-      }
+    sanitySermon(slug: { current: { eq: $slug } }) {
+      _rawBody
+      name
+      publishDate(formatString: "MMMM DD, YYYY")
+      videoUrl
     }
   }
 `

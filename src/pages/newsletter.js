@@ -4,7 +4,7 @@ import { graphql } from "gatsby"
 
 const Newsletter = ({
   data: {
-    markdownRemark: { frontmatter },
+    allSanityNewsletter: { edges },
   },
 }) => (
   <>
@@ -21,14 +21,14 @@ const Newsletter = ({
           </p>
           <div class="newsletter-container">
             <object
-              data={frontmatter.newsletter}
+              data={edges[0].node.newsletter.asset.url}
               type="application/pdf"
               width="800"
               height="600"
             >
               <p>
                 This month's Newsletter - Download{" "}
-                <a href={frontmatter.newsletter}>here</a>
+                <a href={edges[0].node.newsletter.asset.url}>here</a>
               </p>
             </object>
           </div>
@@ -42,9 +42,15 @@ export default Newsletter
 
 export const pageQuery = graphql`
   query NewsletterQuery {
-    markdownRemark(frontmatter: { path: { eq: "/newsletter" } }) {
-      frontmatter {
-        newsletter
+    allSanityNewsletter {
+      edges {
+        node {
+          newsletter {
+            asset {
+              url
+            }
+          }
+        }
       }
     }
   }

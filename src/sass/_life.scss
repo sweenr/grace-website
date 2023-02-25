@@ -2,14 +2,28 @@
   .heading {
     margin-bottom: 2rem;
   }
-  .photos-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: masonry;
+
     .photo {
       margin: 5px;
+      position: relative;
+      border: none;
+      background-color: unset;
+      .desc {
+        background-color: #0000006f;
+        color: white;
+        position: absolute;
+        bottom: 0;
+        padding: 5px;
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0s, opacity 0.5s linear;
+      }
+      &:hover .desc, &:focus .desc {
+        visibility: visible;
+        opacity: 1;
+      }
     }
-  }
+  
 }
 
 .outreach-content {
@@ -18,5 +32,26 @@
   }
   .ministry {
     margin-bottom: 2rem;
+  }
+}
+
+#imageDialog {
+  border: none;
+  &::backdrop {
+    background-color: #0000006f;
+  }
+  & .dialogPhoto {
+    width: 50vw;
+    max-height: 80vh;
+    .image, .desc {
+      margin-bottom: 10px;
+    }
+  }
+  #close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    border-radius: 6px;
+    border: 1px solid black;
   }
 }
