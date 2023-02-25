@@ -13,7 +13,7 @@ export default {
       type: 'slug',
       title: 'Slug',
       options: {
-        source: 'name',
+        source: (doc, _) => `${doc.publishDate}-${doc.name}`,
         slugify: (input: string) => input.toLowerCase().replace(/\s+/g, '-').slice(0, 200),
       },
     },
