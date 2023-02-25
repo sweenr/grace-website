@@ -1,7 +1,7 @@
 import React from "react"
 import { graphql } from "gatsby"
-import { Helmet } from "react-helmet"
 import { PortableText } from "@portabletext/react"
+import { SEO } from "../components/seo"
 
 const Outreach = ({
   data: {
@@ -9,9 +9,6 @@ const Outreach = ({
   },
 }) => (
   <>
-    <Helmet>
-      <title>Outreach</title>
-    </Helmet>
     <div className="content outreach-content">
       <div className="heading">
         <PortableText value={edges[0].node._rawBody} />
@@ -45,3 +42,5 @@ export const pageQuery = graphql`
     }
   }
 `
+
+export const Head = () => <SEO title="Outreach" />

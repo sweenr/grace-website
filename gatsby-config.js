@@ -4,10 +4,11 @@ module.exports = {
   siteMetadata: {
     title: `Grace Lutheran Church`,
     description: `Website for Grace Lutheran Church in Long Beach, MS`,
-    author: `@sweenr`,
+    author: `@_RichardSween`,
+    image: `/luther_rose.png`,
+    siteUrl: `https://gracelongbeach.com`,
   },
   plugins: [
-    `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {

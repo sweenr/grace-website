@@ -1,7 +1,7 @@
 import React from "react"
 import { graphql } from "gatsby"
-import { Helmet } from "react-helmet"
 import { PortableText } from "@portabletext/react"
+import { SEO } from "../components/seo"
 
 const SermonTemplate = ({
   data: {
@@ -21,9 +21,6 @@ const SermonTemplate = ({
   }
   return (
     <>
-      <Helmet>
-        <title>{name}</title>
-      </Helmet>
       <article>
         <header>
           <h1>{name}</h1>
@@ -70,3 +67,9 @@ export const pageQuery = graphql`
     }
   }
 `
+
+export const Head = ({
+  data: {
+    sanitySermon: { name },
+  },
+}) => <SEO title={name} />

@@ -1,8 +1,8 @@
 import React from "react"
 import { graphql } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
-import { Helmet } from "react-helmet"
 import { PortableText } from "@portabletext/react"
+import { SEO } from "../components/seo"
 
 const StephenMinistry = ({
   data: {
@@ -10,9 +10,6 @@ const StephenMinistry = ({
   },
 }) => (
   <>
-    <Helmet>
-      <title>Stephen Ministry</title>
-    </Helmet>
     <div className="content about-content flip-layout">
       <div className="info-block">
         <div>
@@ -54,3 +51,5 @@ export const pageQuery = graphql`
     }
   }
 `
+
+export const Head = () => <SEO title="Stephen Ministry" />

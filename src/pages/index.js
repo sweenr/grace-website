@@ -1,8 +1,8 @@
 import React from "react"
 import { graphql } from "gatsby"
-import Layout from "../components/layout"
 import { GatsbyImage } from "gatsby-plugin-image"
 import { PortableText } from "@portabletext/react"
+import { SEO } from "../components/seo"
 
 const Home = ({
   data: {
@@ -97,4 +97,4 @@ export const pageQuery = graphql`
   }
 `
 
-export const Head = () => <Layout />
+export const Head = () => <SEO title="Home" />

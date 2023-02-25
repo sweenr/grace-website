@@ -1,12 +1,9 @@
 import React from "react"
-import { Helmet } from "react-helmet"
+import { SEO } from "../components/seo"
 
 function Calendar() {
   return (
     <>
-      <Helmet>
-        <title>Calendar</title>
-      </Helmet>
       <div className="calendar-container">
         <iframe
           src="https://calendar.google.com/calendar/embed?src=office%40gracelongbeach.com&ctz=America/Chicago"
@@ -23,3 +20,5 @@ function Calendar() {
 }
 
 export default Calendar
+
+export const Head = () => <SEO title="Calendar" />

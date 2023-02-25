@@ -1,6 +1,6 @@
 import React from "react"
-import { Helmet } from "react-helmet"
 import { graphql } from "gatsby"
+import { SEO } from "../components/seo"
 
 const Newsletter = ({
   data: {
@@ -8,9 +8,6 @@ const Newsletter = ({
   },
 }) => (
   <>
-    <Helmet>
-      <title>Newsletter</title>
-    </Helmet>
     <div className="content">
       <div className="info-block">
         <div>
@@ -55,3 +52,5 @@ export const pageQuery = graphql`
     }
   }
 `
+
+export const Head = () => <SEO title="Newsletter" />

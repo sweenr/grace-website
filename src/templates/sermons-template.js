@@ -1,6 +1,6 @@
 import React from "react"
-import { Helmet } from "react-helmet"
 import { graphql, Link } from "gatsby"
+import { SEO } from "../components/seo"
 
 const Sermons = ({
   data: {
@@ -9,9 +9,6 @@ const Sermons = ({
   pageContext: { previousPagePath, nextPagePath },
 }) => (
   <>
-    <Helmet>
-      <title>Sermons</title>
-    </Helmet>
     <div className="content sermon-content">
       <div className="info-block">
         <h2>Sermons</h2>
@@ -58,3 +55,5 @@ export const pageQuery = graphql`
     }
   }
 `
+
+export const Head = () => <SEO title="Sermons" />

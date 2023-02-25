@@ -1,10 +1,10 @@
 import React, { useRef, useState } from "react"
 import { graphql } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
-import { Helmet } from "react-helmet"
 import { LifePhoto } from "../components/lifePhoto"
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
 import { PortableText } from "@portabletext/react"
+import { SEO } from "../components/seo"
 
 const LifeAtGrace = ({
   data: {
@@ -22,9 +22,6 @@ const LifeAtGrace = ({
 
   return (
     <>
-      <Helmet>
-        <title>Life at Grace</title>
-      </Helmet>
       <div className="content life-content">
         <PortableText value={edges[0].node._rawBody} />
         <ResponsiveMasonry
@@ -84,7 +81,7 @@ const LifeAtGrace = ({
               alt={imageData.alt}
               className="image"
               objectFit="contain"
-              style={{maxHeight: "75vh"}}
+              style={{ maxHeight: "75vh" }}
             />
             <div className="desc">{imageData.alt}</div>
             <button id="close" onClick={() => dialogRef.current.close()}>
@@ -118,3 +115,5 @@ export const pageQuery = graphql`
     }
   }
 `
+
+export const Head = () => <SEO title="Life at Grace" />
