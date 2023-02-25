@@ -2,7 +2,7 @@ import React from "react"
 import { graphql } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
 import { PortableText } from "@portabletext/react"
-import { SEO } from "../components/seo"
+import { Seo } from "../components/seo"
 
 const StephenMinistry = ({
   data: {
@@ -52,4 +52,4 @@ export const pageQuery = graphql`
   }
 `
 
-export const Head = () => <SEO title="Stephen Ministry" />
+export const Head = () => <Seo title="Stephen Ministry" />

@@ -1,6 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
-import { SEO } from "../components/seo"
+import { Seo } from "../components/seo"
 
 const Newsletter = ({
   data: {
@@ -53,4 +53,4 @@ export const pageQuery = graphql`
   }
 `
 
-export const Head = () => <SEO title="Newsletter" />
+export const Head = () => <Seo title="Newsletter" />

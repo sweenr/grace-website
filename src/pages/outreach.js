@@ -1,7 +1,7 @@
 import React from "react"
 import { graphql } from "gatsby"
 import { PortableText } from "@portabletext/react"
-import { SEO } from "../components/seo"
+import { Seo } from "../components/seo"
 
 const Outreach = ({
   data: {
@@ -43,4 +43,4 @@ export const pageQuery = graphql`
   }
 `
 
-export const Head = () => <SEO title="Outreach" />
+export const Head = () => <Seo title="Outreach" />

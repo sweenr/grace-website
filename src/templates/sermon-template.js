@@ -1,7 +1,7 @@
 import React from "react"
 import { graphql } from "gatsby"
 import { PortableText } from "@portabletext/react"
-import { SEO } from "../components/seo"
+import { Seo } from "../components/seo"
 
 const SermonTemplate = ({
   data: {
@@ -72,4 +72,4 @@ export const Head = ({
   data: {
     sanitySermon: { name },
   },
-}) => <SEO title={name} />
+}) => <Seo title={name} />

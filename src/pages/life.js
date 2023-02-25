@@ -4,7 +4,7 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import { LifePhoto } from "../components/lifePhoto"
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
 import { PortableText } from "@portabletext/react"
-import { SEO } from "../components/seo"
+import { Seo } from "../components/seo"
 
 const LifeAtGrace = ({
   data: {
@@ -116,4 +116,4 @@ export const pageQuery = graphql`
   }
 `
 
-export const Head = () => <SEO title="Life at Grace" />
+export const Head = () => <Seo title="Life at Grace" />

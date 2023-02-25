@@ -1,5 +1,5 @@
 import React from "react"
-import { SEO } from "../components/seo"
+import { Seo } from "../components/seo"
 
 function Calendar() {
   return (
@@ -21,4 +21,4 @@ function Calendar() {
 
 export default Calendar
 
-export const Head = () => <SEO title="Calendar" />
+export const Head = () => <Seo title="Calendar" />
