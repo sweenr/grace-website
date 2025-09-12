@@ -33,7 +33,7 @@ const About = ({
           style={{ width: "250px" }}
         />
       </div>
-      <div className="info-block">
+      {/* <div className="info-block">
         <div>
           <h2>{edges[0].node.messageTitle}</h2>
           <PortableText value={edges[0].node._rawMessage} />
@@ -45,7 +45,7 @@ const About = ({
           className="img-circle img-responsive"
           style={{ width: "250px" }}
         />
-      </div>
+      </div> */}
       <div className="info-block">
         <div>
           <h2>{edges[0].node.believeTitle}</h2>
@@ -72,19 +72,11 @@ export const pageQuery = graphql`
         node {
           _rawAbout
           _rawBelieve
-          _rawMessage
           _rawMission
           missionTitle
-          messageTitle
           believeTitle
           aboutTitle
           missionImage {
-            alt
-            asset {
-              gatsbyImageData(layout: FIXED, width: 250)
-            }
-          }
-          messageImage {
             alt
             asset {
               gatsbyImageData(layout: FIXED, width: 250)
